@@ -1,10 +1,6 @@
 # ZHDU--Vue-App
+cd client
 
-cd server
-npm i
-
-cd..
-
-cd client/zhdu_app
 npm i 
-npm run serve
+
+npm run dev
