@@ -10,7 +10,7 @@ let storage = multer.diskStorage({
         cb(null, './uploads');
     },
     filename: function(req, file, cb){
-        cb(null, file.filename + "_" + Date.now() + "_"+file.originalname);
+        cb(null, file.filename + "_" + Date.now() + "_"+ file.originalname);
     },
 });
 
@@ -21,7 +21,7 @@ let upload = multer({
 router.get("/", hotelAPI.fetchAllHotels);
 router.get("/:id", hotelAPI.fetchHotelsById);
 router.post("/", upload, hotelAPI.createHotels);
-router.patch("/:id", hotelAPI.updateHotels);
+router.patch("/:id", upload, hotelAPI.updateHotels);
 router.delete("/:id", hotelAPI.deleteHotels);
 
 module.exports = router;
