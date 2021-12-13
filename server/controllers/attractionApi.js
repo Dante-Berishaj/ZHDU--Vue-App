@@ -1,39 +1,39 @@
-const Hotel = require("../models/Hotel")
+const Attraction = require("../models/Attaction")
 const fs = require("fs");
 
-module.exports = class hotelAPI {
-    static async fetchAllHotels(req, res) {
+module.exports = class attractionAPI {
+    static async fetchAllAttractions(req, res) {
         try{
-            const hotels = await Hotel.find();
-            res.status(200).json(hotels);
+            const attractions = await Attraction.find();
+            res.status(200).json(attractions);
         }catch (err){
             res.status(404).json({ message: err.message })
         }
     }
 
-    static async fetchHotelsById(req, res) {
+    static async fetchAttractionsById(req, res) {
         const id = req.params.id;
         try{
-            const hotel = await Hotel.findById(id);
-            res.status(200).json(hotel);
+            const attraction = await Attraction.findById(id);
+            res.status(200).json(attraction);
         }catch (err){
             res.status(404).json({ message: err.message });
         }
     }
 
-    static async createHotels(req, res) {
-        const hotel = req.body;
+    static async createAttractions(req, res) {
+        const attraction = req.body;
         const imagename = req.file.filename;
-        hotel.image = imagename;
+        attraction.image = imagename;
         try{
-            await Hotel.create(hotel);
-            res.status(201).json({ message: 'Hotel added successfully' });
+            await Attraction.create(attraction);
+            res.status(201).json({ message: 'Attraction added successfully' });
         }catch(err){
             res.status(400).json({ message: err.message });
         }
     }
 
-    static async updateHotels(req, res) {
+    static async updateAttraction(req, res) {
         const id= req.params.id;
         let new_image = "";
         if(req.file){
@@ -48,21 +48,21 @@ module.exports = class hotelAPI {
             new_image = req.body.old_image;
         }
 
-        const newHotel = req.body;
-        newHotel.image = new_image;
+        const newAttraction = req.body;
+        newAttraction.image = new_image;
 
         try {
-            await Hotel.findByIdAndUpdate(id, newHotel);
-            res.status(200).json({ message: "Hotel updated" });
+            await Attraction.findByIdAndUpdate(id, newAttraction);
+            res.status(200).json({ message: "Attraction updated" });
         } catch (err) {
             res.status(404).json({ message: err.message })
         }
     }
 
-    static async deleteHotels(req, res) {
+    static async deleteAttractions(req, res) {
         const id = req.params.id;
         try {
-            const result = await Hotel.findByIdAndDelete(id);
+            const result = await Attraction.findByIdAndDelete(id);
             if(result.image != ''){
                 try {
                     fs.unlinkSync('./uploads/'+result.image)
@@ -70,7 +70,7 @@ module.exports = class hotelAPI {
                     console.log(err);
                 }
             }
-            res.status(200).json({ message: "Hotel deleted successfully" });
+            res.status(200).json({ message: "Attraction deleted successfully" });
         } catch (err) {
             res.status(404).json({ message: err.message });
         }

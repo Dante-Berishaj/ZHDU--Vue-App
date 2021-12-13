@@ -19,5 +19,7 @@ mongoose.connect(process.env.APP_DB, {
 
 app.use("/api/hotel", require("./routes/hotels"));
 app.use("/api/restaurant", require("./routes/restaurants"));
+app.use("/api/attraction", require("./routes/attractions"));
 
-app.listen(port, () => console.log(`Server has started on port ${port}`))
+app.listen(port, 
+    () => console.log(`Server has started on port ${port}`));
