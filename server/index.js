@@ -18,5 +18,6 @@ mongoose.connect(process.env.APP_DB, {
 }).then(() => console.log(`connected to database`)).catch((err) => console.log(err));
 
 app.use("/api/hotel", require("./routes/hotels"));
+app.use("/api/restaurant", require("./routes/restaurants"));
 
 app.listen(port, () => console.log(`Server has started on port ${port}`))
