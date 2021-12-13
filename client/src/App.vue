@@ -1,32 +1,63 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <NavBar/>
+    <City 
+      v-for="c in cityList"
+      v-bind:key="c.id"
+      v-bind:city="c"
+    />
   </div>
 </template>
 
+<script>
+import NavBar from './components/NavBar.vue';
+import City from './components/City.vue'
+
+export default {
+  name: 'App',
+  components: { NavBar, City },
+  props: {
+  },
+  data() {
+    return {
+      cityList: [
+        { 
+          id: 1, 
+          name: "Prishtina",
+          // img: `https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/10/30/17/prishtina-overview.jpg?width=990&auto=webp&quality=75&crop=982:726,smart`
+          img: "https://wallpaperaccess.com/full/1595904.jpg"
+        },
+        { 
+          id: 2, 
+          name: "Ferizaj",
+          // img: `https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/7c/44/54/getlstd-property-photo.jpg?w=900&h=-1&s=1`
+          img: "https://wallpaperaccess.com/full/1595904.jpg"
+        },
+        { 
+          id: 3, 
+          name: "Gjylekreshte",
+          // img: `https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/10/30/17/prishtina-overview.jpg?width=990&auto=webp&quality=75&crop=982:726,smart`
+          img: "https://wallpaperaccess.com/full/1595904.jpg"
+        },
+        { 
+          id: 4, 
+          name: "Muqiverce",
+          // img: `https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/10/30/17/prishtina-overview.jpg?width=990&auto=webp&quality=75&crop=982:726,smart`
+          img: "https://wallpaperaccess.com/full/1595904.jpg"
+        },
+      ],
+    }
+  }
+}
+</script>
+
 <style>
 #app {
+  width: 90%;
+  margin: auto;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  color: #000000;
 }
 </style>
