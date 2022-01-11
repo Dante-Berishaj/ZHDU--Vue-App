@@ -1,6 +1,6 @@
 <template>
-<div class="cities">
-  <h1>Cities</h1>
+  <div class = "cities">
+<h1>Cities</h1>
   <City 
     v-for="c in cityList"
     v-bind:key="c.id"
@@ -8,8 +8,8 @@
   />
 </div>
 </template>
-
 <script>
+
 import City from '../components/City.vue';
 
 export default {
