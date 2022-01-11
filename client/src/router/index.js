@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Cities from '../views/Cities.vue'
 import Test from '../views/Test.vue'
+import Hotels from '../views/Hotels.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/tests',
     name: 'Test',
     component: Test
+  },
+  {
+    path: '/hotels',
+    name: 'Hotels',
+    component: Hotels
   }
 ]
 

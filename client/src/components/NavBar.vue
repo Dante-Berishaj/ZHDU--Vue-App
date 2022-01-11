@@ -5,6 +5,7 @@
       <ul>
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/cities">Cities</router-link></li>
+        <li><router-link to="/hotels">Hotels</router-link></li>
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/tests">Test</router-link></li>
       </ul>
