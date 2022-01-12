@@ -1,49 +1,83 @@
 <template>
-  <div class = "cities">
-<h1>Cities</h1>
-  <City 
-    v-for="c in cityList"
-    v-bind:key="c.id"
-    v-bind:city="c"
-  />
+<div>
+<h1>City</h1>
+<v-container class="grey lighten-5">
+    <v-row no-gutters>
+      <v-col
+        v-for="item in list" v-bind:key="item._id"
+      >
+  <v-card
+    class="mx-auto"
+    max-width="344"
+  >
+    <v-img    
+     src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+     height="400px">
+    </v-img>   
+
+    <v-card-title>
+     {{ item.title}}
+    </v-card-title>
+
+    <v-card-subtitle>
+      {{item.content}}
+    </v-card-subtitle>
+
+    <v-card-text class="text--primary">
+      <div>{{item.location}}</div>
+    </v-card-text>
+
+
+    <v-card-actions>
+      <v-btn
+        color="orange lighten-2"
+        text
+      >
+        Explore
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        icon
+        @click="show = !show"
+      >
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>    
+      </div>
+    </v-expand-transition>
+  </v-card>
+   </v-col>
+    </v-row>
+  </v-container>
 </div>
 </template>
-<script>
 
-import City from '../components/City.vue';
+<script>
+import Vue from 'vue'
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+
+Vue.use(VueAxios, axios)
 
 export default {
-  name: "Cities",
-  components: { City },
-  data() {
-    return {
-      cityList: [
-        { 
-          id: 1, 
-          name: "Prishtina",
-          // img: `https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/10/30/17/prishtina-overview.jpg?width=990&auto=webp&quality=75&crop=982:726,smart`
-          img: "https://wallpaperaccess.com/full/1595904.jpg"
-        },
-        { 
-          id: 2, 
-          name: "Ferizaj",
-          // img: `https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/7c/44/54/getlstd-property-photo.jpg?w=900&h=-1&s=1`
-          img: "https://wallpaperaccess.com/full/1595904.jpg"
-        },
-        { 
-          id: 3, 
-          name: "Gjylekreshte",
-          // img: `https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/10/30/17/prishtina-overview.jpg?width=990&auto=webp&quality=75&crop=982:726,smart`
-          img: "https://wallpaperaccess.com/full/1595904.jpg"
-        },
-        { 
-          id: 4, 
-          name: "Muqiverce",
-          // img: `https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/10/30/17/prishtina-overview.jpg?width=990&auto=webp&quality=75&crop=982:726,smart`
-          img: "https://wallpaperaccess.com/full/1595904.jpg"
-        },
-      ],
-    };
-  }
+  name: 'City',
+  data(){
+    return {list: undefined}
+  },
+  mounted() {
+    Vue.axios.get('http://localhost:5001/api/city')
+    .then((res) => {
+      this.list = res.data;
+      console.warn(res.data)
+    });
+  },
 }
+
+
 </script>
