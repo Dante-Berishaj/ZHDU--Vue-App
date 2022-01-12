@@ -10,10 +10,10 @@
     class="mx-auto"
     max-width="344"
   >
-    <v-img    
-     src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-     height="400px">
-    </v-img>   
+    <v-img
+     height="400px"    
+     :src="require(`../../../server/uploads/${item.image}`)">
+    </v-img>
 
     <v-card-title>
      {{ item.title}}
