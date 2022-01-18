@@ -67,23 +67,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.city {
-  height: 20rem;
-  position: relative;
-  margin: 1rem;
-  color: white;
-}
-
-.city-name {
-  font-size: 2.3rem;
-  position: absolute;
-  top: 60%;
-}
-
-.city-img {
-  width: 100%;
-  max-height: 100%
-}
-</style>
