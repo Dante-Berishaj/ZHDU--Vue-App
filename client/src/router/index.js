@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Cities from '../views/Cities.vue'
 import Test from '../views/Test.vue'
 import Hotels from '../views/Hotels.vue'
+import Attractions from '../views/Attractions.vue'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,11 @@ const routes = [
     path: '/cities',
     name: 'Cities',
     component: Cities
+  },
+  {
+    path: '/attractions',
+    name: 'Attractions',
+    component: Attractions
   },
   {
     path: '/about',
