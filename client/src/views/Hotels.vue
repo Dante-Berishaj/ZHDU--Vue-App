@@ -1,6 +1,5 @@
 <template>
   <div class="hotels">
-    <h1>Accommodation</h1>
     <v-container class="d-flex grey lighten-5">
       <v-row>
         <Hotel

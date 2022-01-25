@@ -1,17 +1,20 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-  </div>
+  <v-content>
+    <Entry />
+     <Gallery />
+  </v-content>
 </template>
 
 <script>
-// @ is an alias to /src
-import HomeTitle from '../components/HomeTitle.vue';
-
+import Entry from "../components/Entry";
+import Gallery from "../components/Gallery";
 export default {
-  name: 'Home',
+  name: "Home",
+
   components: {
-    HomeTitle
+    Entry,
+    Gallery,
+   
   }
-}
+};
 </script>

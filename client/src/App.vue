@@ -1,33 +1,28 @@
 <template>
-  <div id="app">
-    <NavBar/>
+  <v-app>
+  <v-app-bar flat>
+      <NavBar />
+    </v-app-bar>
+
+<v-main>
     <router-view></router-view>
-  </div>
+</v-main>
+    <v-footer>
+      <Footer />
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue';
-import City from './components/City.vue'
+import NavBar from "./components/common/NavBar";
+import Footer from "./components/common/Footer";
 
 export default {
-  name: 'App',
-  components: { NavBar, City },
-  props: {
-  },
-  data() {
-    return {
-    }
+  name: "App",
+
+  components: {
+    NavBar,
+    Footer
   }
 }
 </script>
-
-<style>
-#app {
-  width: 90%;
-  margin: auto;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #000000;
-}
-</style>
