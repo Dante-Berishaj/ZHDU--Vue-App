@@ -1,6 +1,5 @@
 <template>
 <div>
-<h1>City</h1>
 <v-container class="grey lighten-5">
     <v-row no-gutters>
       <v-col
