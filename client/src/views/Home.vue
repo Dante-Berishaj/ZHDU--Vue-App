@@ -21,3 +21,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#home{
+  font-family: 'Montserrat', sans-serif;
+}
+</style>

@@ -6,8 +6,8 @@
         :src="item.src"
         reverse-transition="fade-transition"
         transition="fade-transition"
-      >
-        <v-row class="title fill-height hidden-xs-only white--text"
+      > 
+        <v-row class=" text fill-height hidden-xs-only white--text"
         align="center" 
         justify="center">{{ item.title }}</v-row>
       </v-carousel-item>
@@ -38,9 +38,9 @@ export default {
 };
 </script>
 <style scoped>
-.title{
-    font-family:'Montserrat'!important;
-    font-weight:300;
+.text{
+    font-family:'Montserrat', sans-serif;
+    font-weight:500;
     font-size: 50px;
     }
 </style>
