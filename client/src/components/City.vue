@@ -38,7 +38,7 @@
         icon
         @click="show = !show"
       >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+        <v-icon>{{ show ? 'mdi-heart' : 'mdi-heart' }}</v-icon>
       </v-btn>
     </v-card-actions>
 

@@ -2,8 +2,8 @@
 <div>
 <v-container class="grey lighten-5">
     <v-row no-gutters>
-      <v-col
-        v-for="item in list" v-bind:key="item._id"
+      <v-col cols="12" sm="4"
+        v-for="city in list" v-bind:key="city._id"
       >
   <v-card
     class="mx-auto"
@@ -11,19 +11,19 @@
   >
     <v-img
      height="400px"    
-     :src="require(`../../../server/uploads/${item.image}`)">
+     :src="require(`../../../server/uploads/${city.image}`)">
     </v-img>
 
     <v-card-title>
-     {{ item.title}}
+     {{ city.title}}
     </v-card-title>
 
     <v-card-subtitle>
-      {{item.content}}
+      {{city.content}}
     </v-card-subtitle>
 
     <v-card-text class="text--primary">
-      <div>{{item.location}}</div>
+      <div>{{city.location}}</div>
     </v-card-text>
 
 
@@ -41,7 +41,7 @@
         icon
         @click="show = !show"
       >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+        <v-icon>{{ show ? 'mdi-heart' : 'mdi-heart' }}</v-icon>
       </v-btn>
     </v-card-actions>
 
