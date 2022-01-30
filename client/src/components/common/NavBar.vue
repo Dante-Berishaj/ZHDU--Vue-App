@@ -4,8 +4,13 @@
       <img :src="require('@/assets/logo.png')" alt="logo" height="60" />
     </router-link>
     <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-xs-only">
-      <v-btn v-for="item in items" :key="item.href" :href="item.href" text>
+    <v-toolbar-items class="hidden-xs-only ">
+      <v-btn 
+      class="btn" 
+      v-for="item in items" 
+      :key="item.href" 
+      :href="item.href" 
+      text>
         {{ item.title }}
       </v-btn>
     </v-toolbar-items>
@@ -35,10 +40,15 @@ export default {
     items: [
       { title: "HOME", href: "/" },
       { title: "CITIES", href: "/cities" },
-      { title: "ACCOMMODATION", href: "/hotels" },
       { title: "ABOUT", href: "/about" },
-      { title: "TEST", href: "/tests" },
     ],
   }),
 };
 </script>
+
+<style scoped>
+.btn{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+</style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="block latestPostBlock">
+  <div class="block txt">
     <v-container>
       <h2 class="text-center">Attractions</h2>
       <v-row>
         <v-col  v-for="item in items" :key="item.id" cols="12" md="4">
-          <v-card outlined class="mx-auto">
+          <v-card dark outlined class="mx-auto">
               <v-img
                class="align-end"
                height="200px"    
@@ -12,7 +12,7 @@
             </v-img>
             <v-card-title>{{ item.title }}</v-card-title>
             <v-card-subtitle class="pb-0">{{ item.content.substring(0,100) + "..." }}</v-card-subtitle>
-            <v-card-text class="text--primary">
+            <v-card-text class="white-text text-right">
               <div>{{ item.location }}</div>
               <div>{{item.category}}</div>
             </v-card-text>
@@ -70,3 +70,25 @@ export default {
 };
 
 </script>
+
+<style scoped>
+.block {
+  padding: 60px 0;
+  border-bottom: 1px solid darken(white, 10%);
+}
+.txt {
+  font-weight: 800;
+  font-size: 30px;
+  border-bottom: 1px;
+}
+.txt:after {
+      content: '';
+      background: black;
+      width: 60px;
+      height: 1px;
+      position: absolute;
+      bottom: 10;
+      left: 50%;
+      transform: translateX(-50%);
+}
+</style>

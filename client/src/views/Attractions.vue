@@ -22,7 +22,7 @@
       {{attraction.content.substring(0,100) + "..."}}
     </v-card-subtitle>
 
-    <v-card-text class="text--primary">
+    <v-card-text class="text--primary text-right">
       <div>{{attraction.location}}</div>
       <div>{{attraction.category}}</div>
 
