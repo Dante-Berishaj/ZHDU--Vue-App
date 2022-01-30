@@ -5,6 +5,8 @@ import Cities from '../views/Cities.vue'
 import Test from '../views/Test.vue'
 import Hotels from '../views/Hotels.vue'
 import Attractions from '../views/Attractions.vue'
+import Register from '../components/auth/Register.vue'
+import Login from '../components/auth/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -41,7 +43,18 @@ const routes = [
     path: '/hotels',
     name: 'Hotels',
     component: Hotels
-  }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+
 ]
 
 const router = new VueRouter({
