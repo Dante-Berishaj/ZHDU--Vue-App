@@ -1,6 +1,6 @@
 <template>
   <div class="hotels">
-    <v-container class="d-flex grey lighten-5">
+    <v-container class="d-flex">
       <v-row>
         <Hotel
           v-for="h in hotels"

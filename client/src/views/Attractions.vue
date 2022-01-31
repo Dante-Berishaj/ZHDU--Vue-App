@@ -1,8 +1,8 @@
 <template>
 <div>
-<v-container class="grey lighten-5">
+<v-container>
     <v-row no-gutters>
-      <v-col
+      <v-col cols="12" sm="4"
         v-for="attraction in list" v-bind:key="attraction._id"
       >
   <v-card
@@ -19,10 +19,10 @@
     </v-card-title>
 
     <v-card-subtitle>
-      {{attraction.content}}
+      {{attraction.content.substring(0,100) + "..."}}
     </v-card-subtitle>
 
-    <v-card-text class="text--primary">
+    <v-card-text class="text--primary text-right">
       <div>{{attraction.location}}</div>
       <div>{{attraction.category}}</div>
 
@@ -43,7 +43,7 @@
         icon
         @click="show = !show"
       >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+        <v-icon>{{ show ? 'mdi-heart' : 'mdi-heart' }}</v-icon>
       </v-btn>
     </v-card-actions>
 
