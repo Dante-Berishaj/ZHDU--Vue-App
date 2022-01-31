@@ -1,7 +1,15 @@
 <template>
 <v-app>
     <v-app-bar flat>
+       <v-btn icon @click="toggleDarkMode">
+        <v-icon>mdi-theme-light-dark</v-icon>
+    </v-btn>
       <NavBar />
+       <v-avatar>
+      <v-icon>
+        mdi-account-circle
+      </v-icon>
+    </v-avatar>
     </v-app-bar>
 
 <v-main>
@@ -16,7 +24,6 @@
 <script>
 import NavBar from "./components/common/NavBar";
 import Footer from "./components/common/Footer";
-import NavDrawer from "./components/common/NavDrawer.vue"
 
 export default {
   name: "App",
@@ -24,8 +31,32 @@ export default {
   components: {
     NavBar,
     Footer,
-    NavDrawer
   },
+   methods: {
+        toggleDarkMode: function() {
+            this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+            localStorage.setItem("darkTheme", this.$vuetify.theme.dark.toString());
+        }
+    },
+    mounted() {
+        const theme = localStorage.getItem("darkTheme");
+        if (theme) {
+            if (theme === "true") {
+                this.$vuetify.theme.dark = true;
+            } else {
+                this.$vuetify.theme.dark = false;
+            }
+        } else if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+            this.$vuetify.theme.dark = true;
+            localStorage.setItem(
+                "darkTheme",
+                this.$vuetify.theme.dark.toString()
+            );
+        }
+    }
 }
 </script>
 
@@ -39,7 +70,5 @@ export default {
 #app{
   width: 100vw;
   min-height: 100vh;
-  background: #FFFFFF;
-  color: #15202B;
 }
 </style>

@@ -83,7 +83,6 @@ export default {
 }
 .txt:after {
       content: '';
-      background: black;
       width: 60px;
       height: 1px;
       position: absolute;

@@ -1,9 +1,9 @@
 <template>
-  <v-content>
+  <v-main dark>
     <Entry />
      <Gallery />
      <LatestAttractions />
-  </v-content>
+  </v-main>
 </template>
 
 <script>

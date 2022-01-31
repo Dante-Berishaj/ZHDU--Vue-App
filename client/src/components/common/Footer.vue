@@ -2,8 +2,12 @@
     <v-footer padless>
       <v-card flat class="text-center">
         <v-card-text>
-          <v-btn v-for="icon in icons" :key="icon" class="mx-4" icon>
-            <v-icon size="24px">{{ icon }}</v-icon>
+          <v-btn v-for="item in items"
+           :key="item.href" 
+           :href="item.href"  
+           class="mx-4" 
+           icon>
+            <v-icon size="24px">{{ item.icon }}</v-icon>
           </v-btn>
         </v-card-text>
         <v-card-text
@@ -22,11 +26,11 @@
 export default {
   name: "Footer",
   data: () => ({
-    icons: [
-      "fab fa-facebook",
-      "fab fa-twitter",
-      "fab fa-linkedin",
-      "fab fa-instagram"
+    items: [
+      {icon: "fab fa-facebook", href: "https://www.facebook.com/"},
+      {icon: "fab fa-twitter", href: "https://twitter.com/"},
+      {icon: "fab fa-linkedin", href: "https://www.linkedin.com/"},
+      {icon: "fab fa-instagram", href: "https://www.instagram.com/"},
     ]
   })
 };

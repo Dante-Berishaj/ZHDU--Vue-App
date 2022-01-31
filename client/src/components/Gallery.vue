@@ -1,6 +1,6 @@
 <template>
   <div class="block txt">
-    <v-container>
+    <v-container dark>
       <h2 class="text-center">Gallery</h2>
       <v-row>
         <v-col
@@ -88,7 +88,6 @@ export default {
 }
 .txt:after {
       content: '';
-      background: black;
       width: 60px;
       height: 1px;
       position: absolute;
