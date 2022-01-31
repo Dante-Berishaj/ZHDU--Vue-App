@@ -4,7 +4,7 @@
       <img :src="require('@/assets/logo.png')" alt="logo" height="60" />
     </router-link>
     <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-xs-only ">
+    <v-toolbar-items class="hidden-xs-only">
       <v-btn 
       class="btn" 
       v-for="item in items" 
@@ -13,6 +13,18 @@
       text>
         {{ item.title }}
       </v-btn>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn v-bind="attrs" v-on="on" icon>
+            <v-icon> mdi-account-circle </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item v-for="(list, index) in lists" :key="index">
+            <v-list-item-title>{{ list.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-toolbar-items>
     <div class="hidden-sm-and-up">
       <v-menu offset-y>
@@ -41,6 +53,12 @@ export default {
       { title: "HOME", href: "/" },
       { title: "CITIES", href: "/cities" },
       { title: "ABOUT", href: "/about" },
+    ],
+     lists: [
+      { title: "My Profile" },
+      { title: "Favorites" },
+      { title: "Settings" },
+      { title: "Dark Mode" },
     ],
   }),
 };
