@@ -54,6 +54,9 @@
             </v-list>
           </v-col>
         </v-row>
+         <div class="googlemap">
+      <iframe src="https://maps.google.com/maps?q=prishtine%20kosovo&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="450"></iframe>
+    </div>
       </v-container>
     </div>
   </v-container>
