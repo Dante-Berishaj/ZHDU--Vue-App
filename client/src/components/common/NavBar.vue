@@ -5,12 +5,13 @@
     </router-link>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-xs-only">
-      <v-btn 
-      class="btn" 
-      v-for="item in items" 
-      :key="item.href" 
-      :href="item.href" 
-      text>
+      <v-btn
+        class="btn"
+        v-for="item in items"
+        :key="item.href"
+        :href="item.href"
+        text
+      >
         {{ item.title }}
       </v-btn>
       <v-menu offset-y>
@@ -53,8 +54,9 @@ export default {
       { title: "HOME", href: "/" },
       { title: "CITIES", href: "/cities" },
       { title: "ABOUT", href: "/about" },
+      { title: "DASHBOARD", href: "/dashboard" },
     ],
-     lists: [
+    lists: [
       { title: "My Profile" },
       { title: "Favorites" },
       { title: "Settings" },
@@ -65,8 +67,8 @@ export default {
 </script>
 
 <style scoped>
-.btn{
-  font-family: 'Montserrat', sans-serif;
+.btn {
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
 </style>
