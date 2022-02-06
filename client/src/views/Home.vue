@@ -3,6 +3,7 @@
     <Entry />
      <Gallery />
      <LatestAttractions />
+     <LatestHotels />
   </v-main>
 </template>
 
@@ -10,13 +11,15 @@
 import Entry from "../components/Entry";
 import Gallery from "../components/Gallery";
 import LatestAttractions from "../components/LatestAttraction.vue"
+import LatestHotels from "../components/LatestHotels.vue"
 export default {
   name: "Home",
 
   components: {
     Entry,
     Gallery,
-    LatestAttractions
+    LatestAttractions,
+    LatestHotels
    
   }
 };
