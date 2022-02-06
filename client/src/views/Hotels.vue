@@ -5,7 +5,7 @@
         <v-col cols="12" sm="4" v-for="hotel in hotels" v-bind:key="hotel._id">
           <v-card class="mx-auto" max-width="344">
             <v-img
-              height="400px"
+              height="200px"
               :src="require(`../../../server/uploads/${hotel.image}`)"
             >
             </v-img>

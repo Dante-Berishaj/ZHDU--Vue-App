@@ -41,7 +41,7 @@
           <span v-if="hotel.location == 'Prishtine'">
             <v-card class="mx-auto" max-width="344">
               <v-img
-                height="400px"
+                height="200px"
                 :src="require(`../../../../server/uploads/${hotel.image}`)"
               >
               </v-img>
