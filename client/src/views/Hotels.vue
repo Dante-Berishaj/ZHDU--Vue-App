@@ -1,31 +1,69 @@
 <template>
-  <div class="hotels">
-    <v-container class="d-flex">
-      <v-row>
-        <Hotel
-          v-for="h in hotels"
-          v-bind:hotel="h"
-        />
+  <div>
+    <v-container>
+      <v-row no-gutters>
+        <v-col cols="12" sm="4" v-for="hotel in hotels" v-bind:key="hotel._id">
+          <v-card class="mx-auto" max-width="344">
+            <v-img
+              height="200px"
+              :src="require(`../../../server/uploads/${hotel.image}`)"
+            >
+            </v-img>
+
+            <v-card-title>
+              {{ hotel.title }}
+            </v-card-title>
+
+            <v-card-subtitle>
+              {{ hotel.content.substring(0, 100) + "..." }}
+            </v-card-subtitle>
+
+            <v-card-text class="text--primary text-right">
+              <div>{{ hotel.category }}</div>
+              <div>{{ hotel.location }}</div>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-btn color="orange lighten-2" text> Explore </v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-btn icon @click="show = !show">
+                <v-icon>{{ show ? "mdi-heart" : "mdi-heart" }}</v-icon>
+              </v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="show">
+                <v-divider></v-divider>
+              </div>
+            </v-expand-transition>
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
-import Hotel from '../components/Hotel.vue'
-import axios from 'axios'
+import Vue from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
+
+Vue.use(VueAxios, axios);
 
 export default {
-  name: "Hotels",
-  components: { Hotel },
+  name: "Hotel",
   data() {
-    return {
-      hotels: ['asdfasdf']
-    };
+    return { 
+      hotels: [] 
+      };
   },
   mounted() {
-    axios.get('http://localhost:5001/api/hotel')
-      .then(res => this.hotels = res.data);
-  }
-}
+    Vue.axios.get("http://localhost:5001/api/hotel").then((res) => {
+      this.hotels = res.data;
+      console.warn(res.data);
+    });
+  },
+};
 </script>

@@ -33,8 +33,12 @@
           <v-app-bar-nav-icon v-on="on"></v-app-bar-nav-icon>
         </template>
         <v-list class="responsiveMenu">
-          <v-list-item-group v-model="selectedItem" color="primary">
-            <v-list-item v-for="(item, i) in items" :key="i">
+          <v-list-item-group color="primary">
+            <v-list-item
+              v-for="item in items"
+              :key="item.href"
+              :href="item.href"
+            >
               <v-list-item-content>
                 <v-list-item-title v-text="item.title"></v-list-item-title>
               </v-list-item-content>

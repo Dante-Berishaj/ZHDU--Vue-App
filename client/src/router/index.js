@@ -1,11 +1,15 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Cities from "../views/Cities.vue";
-import Test from "../views/Test.vue";
-import Hotels from "../views/Hotels.vue";
-import Attractions from "../views/Attractions.vue";
-import Dashboard from "../views/Dashboard.vue";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+import Cities from '../views/Cities.vue'
+import Hotels from '../views/Hotels.vue'
+import Attractions from '../views/Attractions.vue'
+import Prishtina from '../views/cityDetails/Prishtina'
+import Prizreni from '../views/cityDetails/Prizreni'
+import Peja from '../views/cityDetails/Peja'
+import Mitrovica from '../views/cityDetails/Mitrovica'
+import Gjakova from '../views/cityDetails/Gjakova'
+import Dashboard from '../views/Dashboard.vue'
 
 Vue.use(VueRouter);
 
@@ -21,9 +25,34 @@ const routes = [
     component: Cities,
   },
   {
-    path: "/attractions",
-    name: "Attractions",
-    component: Attractions,
+    path: '/prishtina',
+    name: 'Prishtina',
+    component: Prishtina
+  },
+   {
+    path: '/prizreni',
+    name: 'Prizreni',
+    component: Prizreni
+  },
+  {
+    path: '/peja',
+    name: 'peja',
+    component: Peja
+  },
+  {
+    path: '/gjakova',
+    name: 'Gjakova',
+    component: Gjakova
+  },
+  {
+    path: '/mitrovica',
+    name: 'Mitrovica',
+    component: Mitrovica
+  },
+  {
+    path: '/attractions',
+    name: 'Attractions',
+    component: Attractions
   },
   {
     path: "/about",
@@ -35,21 +64,16 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: "/tests",
-    name: "Test",
-    component: Test,
-  },
-  {
-    path: "/hotels",
-    name: "Hotels",
-    component: Hotels,
-  },
-  {
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
   },
-];
+  {
+    path: '/hotels',
+    name: 'Hotels',
+    component: Hotels
+  }
+]
 
 const router = new VueRouter({
   mode: "history",

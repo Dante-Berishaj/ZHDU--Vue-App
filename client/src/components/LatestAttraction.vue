@@ -16,14 +16,11 @@
               <div>{{ item.location }}</div>
               <div>{{item.category}}</div>
             </v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" text>More</v-btn>
-            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
       <v-row justify = "end">
-           <router-link
+           <router-link style="text-decoration: none"
         to="/attractions"
       >
      <v-btn align="right" text color="primary">
