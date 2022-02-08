@@ -51,7 +51,7 @@ export default {
       items: [
         {
           text: "Overview",
-          icon: "mdi-chart-donut",
+          icon: "mdi-home",
           href: "/dashboard/overview",
         },
         {
@@ -61,7 +61,7 @@ export default {
         },
         {
           text: "Admins",
-          icon: "mdi-chart-donut",
+          icon: "mdi-account",
           href: "/dashboard/users",
         },
       ],
