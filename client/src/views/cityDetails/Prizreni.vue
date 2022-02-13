@@ -43,8 +43,12 @@
 
               <v-card-title>
                 {{ hotel.title }}
+                <v-btn right absolute class="ml-4 mt-3" color="blue">
+                {{ hotel.star }}
+                <v-icon color="yellow darken-2">mdi-star</v-icon>
+                </v-btn>
               </v-card-title>
-
+              <v-spacer></v-spacer>
               <v-card-subtitle>
                 {{ hotel.content.substring(0, 100) + "..." }}
               </v-card-subtitle>

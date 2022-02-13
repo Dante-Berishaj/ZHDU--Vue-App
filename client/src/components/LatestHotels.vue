@@ -10,7 +10,13 @@
                height="200px"    
               :src="item.src">
             </v-img>
-            <v-card-title>{{ item.title }}</v-card-title>
+            <v-card-title>{{ item.title }}
+              <v-btn right absolute class="ml-4 mt-3" color="blue">
+                {{ item.star }}
+                <v-icon color="yellow darken-2">mdi-star</v-icon>
+              </v-btn>
+            </v-card-title>
+            <v-spacer></v-spacer>
             <v-card-subtitle class="pb-0">{{ item.content.substring(0,100) + "..." }}</v-card-subtitle>
             <v-card-text class="white-text text-right">
               <div>{{ item.location }}</div>
@@ -41,6 +47,7 @@ export default {
         id: 1,
         title: "Swiss Diamond Hotel",
         location: "Prishtine",
+        star: "5.0",
         content: "His ubique laboramus ne. Expetenda assueverit sed ad. Id nec malis lucilius delicatissimi. Nec assum sonet suscipit ex, diam deterruisset ut usu, ad dicat fabellas aliquando eam.",
         src: require("../assets/images/img8.jpg")
       },
@@ -48,6 +55,7 @@ export default {
         id: 2,
         title: "Premium Park Hotel",
         location: "Prizren",
+        star: "4.5",
         content: "Sea ad habemus assueverit, omnes platonem convenire sit et, at integre pericula quo. Facete adolescens definitionem cu qui, in putant aliquid fierent ius.",
         src: require("../assets/images/img13.jpg")
       },
@@ -55,6 +63,7 @@ export default {
         id: 3,
         title: "Ujevara e Drinit Resort",
         location: "Peje",
+        star: "4.0",
         content: "Aliquam albucius mei ei, debitis torquatos et pro, eos natum scribentur no. Putant verear constituto te qui. Adolescens persequeris vim ei. Vel nullam reprimique te.",
         src: require("../assets/images/img14.jpg")
       }
