@@ -22,10 +22,16 @@
               {{ hotel.content.substring(0, 100) + "..." }}
             </v-card-subtitle>
             <v-card-text class="text--primary text-left">
-              <div>{{ hotel.category }}</div>
-              <div>{{ hotel.location }}</div>
+             <div> <span>{{ hotel.category }}</span></div>
+             <div class="text-right"> <span>{{ hotel.location }}</span></div>
             </v-card-text>
            <v-card-actions class="pa-4">
+           <v-btn 
+              color="orange lighten-2" 
+              text
+              :to="{ name: 'hotelDetails', params: { id: hotel._id } }"
+              > Explore
+               </v-btn>
      
       <v-spacer></v-spacer>
       <span class="grey--text text--lighten-2 text-caption mr-2">
@@ -40,24 +46,14 @@
         hover
         size="18"
       ></v-rating>
+       
     </v-card-actions>
 
 
             <v-card-actions>
-              <v-btn 
-              color="orange lighten-2" 
-              text
-              :to="{ name: 'hotelDetails', params: { id: hotel._id } }"
-              > Explore
-               </v-btn>
+             
 
               <v-spacer></v-spacer>
-              <EditHotel />
-              <v-btn icon>
-                <v-icon color="red darken-1">{{
-                  "mdi-trash-can-outline"
-                }}</v-icon>
-              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -70,14 +66,12 @@
 
 <script>
 import Form from "../components/AddHotel.vue";
-import EditHotel from "../components/EditHotel.vue";
 import API from "../api/hotelapi";
 
 export default {
   name: "Hotel",
   components: {
     Form,
-    EditHotel,
   },
   data() {
     return {

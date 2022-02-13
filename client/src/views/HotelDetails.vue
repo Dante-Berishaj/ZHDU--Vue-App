@@ -12,10 +12,25 @@
     </v-img>
     <v-spacer></v-spacer>
     <v-container>
-      <h1 class="text text-left">
-        {{ hotel.title }}
-      </h1>
-      <v-spacer></v-spacer>
+      <v-row>
+        <v-col>
+          <h1 class="text text-left">
+            {{ hotel.title }}
+          </h1>
+        </v-col>
+        <v-col align="right" >
+          <v-btn text >
+          <EditHotel />
+          </v-btn>
+           <v-btn color="red darken-1" text @click="removeHotel(hotel._id)">
+            <v-icon color="red darken-1"> mdi-trash-can-outline </v-icon>
+             Delete
+          </v-btn>
+          </v-col>
+      </v-row>
+    </v-container>
+      <v-divider></v-divider>
+
       <v-container>
         <v-row>
           <v-col>
@@ -85,15 +100,19 @@
                     <v-icon>mdi-at</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
-                    <v-list-item-title>accommodation@example.com</v-list-item-title>
+                    <v-list-item-title
+                      >accommodation@example.com</v-list-item-title
+                    >
                   </v-list-item-content>
                 </v-list-item>
-                 <v-list-item>
+                <v-list-item>
                   <v-list-item-icon>
                     <v-icon>mdi-web</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
-                    <v-list-item-title>www.accommodationexample.com</v-list-item-title>
+                    <v-list-item-title
+                      >www.accommodationexample.com</v-list-item-title
+                    >
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -101,19 +120,17 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-container>
   </v-main>
 </template>
 
 <script>
 import API from "../api/hotelapi";
-import EditHotel from "../components/EditHotel.vue"
+import EditHotel from "../components/EditHotel.vue";
 export default {
-      components: {
+  components: {
     EditHotel,
-      },
+  },
   data() {
-    
     return {
       hotel: {},
     };
@@ -121,6 +138,13 @@ export default {
   async created() {
     const response = await API.getHotelsByID(this.$route.params.id);
     this.hotel = response;
+  },
+  methods: {
+      async removeHotel(id){
+          const response = await API.deleteHotel(id)
+          this.$router.push({ name: 'hotels'})
+      }
+
   },
 };
 </script>
