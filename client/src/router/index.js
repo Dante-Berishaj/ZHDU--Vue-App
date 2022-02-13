@@ -9,7 +9,6 @@ import Prizreni from '../views/cityDetails/Prizreni'
 import Peja from '../views/cityDetails/Peja'
 import Mitrovica from '../views/cityDetails/Mitrovica'
 import Gjakova from '../views/cityDetails/Gjakova'
-import AddHotel from '../components/AddHotel'
 
 Vue.use(VueRouter)
 
@@ -66,12 +65,6 @@ const routes = [
     path: '/hotels',
     name: 'Hotels',
     component: Hotels
-  },
-  {
-    path: "/addhotel",
-      name: "addhotel",
-      component: AddHotel
-
   },
 ]
 

@@ -1,6 +1,11 @@
 <template>
   <div>
     <v-container>
+      <v-alert border="left" close-text="Close Alert" color="green accent-4" 
+      dark dismissable
+      v-if="this.$route.params.message">
+{{ this.$route.params.message }}
+     </v-alert>
       <v-row no-gutters>
         <v-col cols="12" sm="4" v-for="hotel in hotels" v-bind:key="hotel._id">
           <v-card class="mx-auto" max-width="344">

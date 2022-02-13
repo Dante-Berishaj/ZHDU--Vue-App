@@ -68,6 +68,7 @@
                 <v-file-input
                 @change="selectFile"
                   show-size
+                  counter multiple
                   label="Add Image"
                   prepend-icon="mdi-file-image-plus"
                 ></v-file-input>
@@ -78,7 +79,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">
+          <v-btn color="red darken-1" text @click="dialog = false">
             Close
           </v-btn>
           <v-btn color="blue darken-1" text type="submit" @click="dialog = false">
@@ -100,13 +101,13 @@ export default {
     rules:[(value)=>!!value || "This field is required."],
     dialog: false,
     hotel: {
-      title: "",
-      category: "",
-      content: "",
-      location: null,
-      image: ""
+      title: '',
+      category: '',
+      content: '',
+      location: '',
+      image: ''
     },
-    image: "",
+    image: '',
     };
   },
   methods: {
@@ -122,7 +123,7 @@ export default {
       formData.append('location', this.hotel.location);
 if(this.$refs.form.validate()){
   const response = await API.addHotel(formData);
-  this.$router.push({name: 'home', params: {message: response.message}})
+  this.$router.push({name: 'Hotels', params: {message: response.message}})
 }
     }
   },
