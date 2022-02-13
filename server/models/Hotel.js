@@ -6,7 +6,7 @@ const hotelSchema = mongoose.Schema({
     location: String,
     content: String,
     image: String,
-    star: String,
+    star: Number,
     created: {
         type: Date,
         default: Date.now
