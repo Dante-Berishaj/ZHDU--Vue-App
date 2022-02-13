@@ -105,6 +105,7 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import API from "../../api/hotelapi"
 
 Vue.use(VueAxios, axios);
 export default {
@@ -129,13 +130,10 @@ export default {
       attractions: [],
     };
   },
-  mounted() {
-    Vue.axios.get("http://localhost:5001/api/hotel").then((res) => {
-      this.hotels = res.data;
-      console.warn(res.data);
-    });
+  async created(){
+    this.hotels = await API.getAllHotels();
   },
-  created() {
+  mounted() {
     Vue.axios.get("http://localhost:5001/api/attraction").then((res) => {
       this.attractions = res.data;
       console.warn(res.data);

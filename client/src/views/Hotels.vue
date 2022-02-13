@@ -27,43 +27,35 @@
               <v-btn color="orange lighten-2" text> Explore </v-btn>
 
               <v-spacer></v-spacer>
-
-              <v-btn icon @click="show = !show">
-                <v-icon>{{ show ? "mdi-heart" : "mdi-heart" }}</v-icon>
-              </v-btn>
             </v-card-actions>
-
-            <v-expand-transition>
-              <div v-show="show">
-                <v-divider></v-divider>
-              </div>
-            </v-expand-transition>
           </v-card>
-        </v-col>
+      </v-col>
+       
       </v-row>
+      
+  <Form />
     </v-container>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import axios from "axios";
-import VueAxios from "vue-axios";
+import Form from "../components/AddHotel.vue"
+import API from "../api/hotelapi";
 
-Vue.use(VueAxios, axios);
 
 export default {
   name: "Hotel",
+  components: {
+    Form,
+  },
   data() {
+    
     return { 
-      hotels: [] 
+      hotels: [],
       };
   },
-  mounted() {
-    Vue.axios.get("http://localhost:5001/api/hotel").then((res) => {
-      this.hotels = res.data;
-      console.warn(res.data);
-    });
-  },
+async created(){
+  this.hotels = await API.getAllHotels();
+},
 };
 </script>
