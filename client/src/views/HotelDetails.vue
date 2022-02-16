@@ -18,108 +18,116 @@
             {{ hotel.title }}
           </h1>
         </v-col>
-        <v-col align="right" >
-          <v-btn text >
-          <EditHotel />
+        <v-col align="right">
+          <v-btn text>
+            <EditHotel />
           </v-btn>
-           <v-btn color="red darken-1" text @click="removeHotel(hotel._id)">
+          <v-btn color="red darken-1" text @click="removeHotel(hotel._id)">
             <v-icon color="red darken-1"> mdi-trash-can-outline </v-icon>
-             Delete
+            Delete
           </v-btn>
-          </v-col>
+        </v-col>
       </v-row>
     </v-container>
-      <v-divider></v-divider>
+    <v-divider></v-divider>
 
-      <v-container>
-        <v-row>
-          <v-col>
-            <v-sheet max-height="70vh" rounded="lg">
-              {{ hotel.content }}
-            </v-sheet>
-          </v-col>
-          <v-col cols="3">
-            <v-sheet rounded="lg">
-              <v-list color="transparent">
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>Rating</v-list-item-title>
-                    <v-list-item-subtitle>
-                      <v-rating
-                        v-model="hotel.star"
-                        background-color="white"
-                        color="yellow accent-4"
-                        dense
-                        half-increments
-                        hover
-                        size="18"
-                      ></v-rating>
-                    </v-list-item-subtitle>
-                    <span class="grey--text text--lighten-2 text-caption mr-2">
-                      ({{ hotel.star }})
-                    </span>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-divider class="my-2"></v-divider>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>Category</v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ hotel.category }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-divider class="my-2"></v-divider>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>Location</v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ hotel.location }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-sheet>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-sheet max-height="70vh" rounded="lg">
-              <v-list>
-                <h3>Contact</h3>
-                <v-list-item>
-                  <v-list-item-icon>
-                    <v-icon>mdi-dialpad</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title>+38349123456</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-icon>
-                    <v-icon>mdi-at</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title
-                      >accommodation@example.com</v-list-item-title
-                    >
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-icon>
-                    <v-icon>mdi-web</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title
-                      >www.accommodationexample.com</v-list-item-title
-                    >
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-sheet>
-          </v-col>
-        </v-row>
-      </v-container>
+    <v-container>
+      <v-row>
+        <v-col>
+          <v-sheet max-height="70vh" rounded="lg">
+            {{ hotel.content }}
+          </v-sheet>
+        </v-col>
+        <v-col cols="3">
+          <v-sheet rounded="lg">
+            <v-list color="transparent">
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Rating</v-list-item-title>
+                  <v-list-item-subtitle>
+                    <v-rating
+                      v-model="hotel.star"
+                      background-color="white"
+                      color="yellow accent-4"
+                      dense
+                      half-increments
+                      hover
+                      size="18"
+                    ></v-rating>
+                  </v-list-item-subtitle>
+                  <span class="grey--text text--lighten-2 text-caption mr-2">
+                    ({{ hotel.star }})
+                  </span>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider class="my-2"></v-divider>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Category</v-list-item-title>
+                  <v-list-item-subtitle>
+                    {{ hotel.category }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider class="my-2"></v-divider>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Location</v-list-item-title>
+                  <v-list-item-subtitle>
+                    {{ hotel.location }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-sheet>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-sheet max-height="70vh" rounded="lg">
+            <v-list two-line>
+              <h1 class="pl-10">Contact</h1>
+
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="indigo"> mdi-phone </v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ hotel.number }}</v-list-item-title>
+                  <v-list-item-subtitle>Phone Number</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider class="my-2"></v-divider>
+
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="indigo"> mdi-at </v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ hotel.email }}</v-list-item-title>
+                  <v-list-item-subtitle>E-Mail Address</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider class="my-2"></v-divider>
+
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="indigo"> mdi-web </v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>
+                     <a 
+                     style="text-decoration: none"
+                     :href=" hotel.web">{{ hotel.web }}</a>
+                  </v-list-item-title>
+                  <v-list-item-subtitle>Website</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-sheet>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-main>
 </template>
 
@@ -140,11 +148,10 @@ export default {
     this.hotel = response;
   },
   methods: {
-      async removeHotel(id){
-          const response = await API.deleteHotel(id)
-          this.$router.push({ name: 'hotels'})
-      }
-
+    async removeHotel(id) {
+      const response = await API.deleteHotel(id);
+      this.$router.push({ name: "hotels" });
+    },
   },
 };
 </script>
@@ -154,4 +161,5 @@ export default {
   font-weight: 600;
   font-size: 50px;
 }
+
 </style>

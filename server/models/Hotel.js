@@ -7,6 +7,9 @@ const hotelSchema = mongoose.Schema({
     content: String,
     image: String,
     star: Number,
+    number: Number,
+    email: String,
+    web: String,
     created: {
         type: Date,
         default: Date.now
