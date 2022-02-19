@@ -21,28 +21,37 @@ users.post('/register', async(req, res) => {
         errorMessage = 'No email provided'
     } else if(email.length < 10) {
         errorMessage = 'email should have atleast 10 characters'
+    }else if(!password){
+        errorMessage = 'No password provided'
+    } else if(password.length < 8) {
+        errorMessage = 'password should have atleast 8 characters'
     }
 
     if(errorMessage){
         return res.json({
-            message: 'invalid email'
+            message: errorMessage
         })
     }
 
-    const user = await admin.auth().createUser({
-        email: email,
-        password: password
-    })
-
-    //check if admin
-    if(adminEmails.includes(user.email)) {
-        const customClaims = {admin:true}
-        admin.auth().setCustomUserClaims(user.uid, customClaims);
-
-        return db.collection("roles").doc(user.uid).set({
-            email: user.email,
-            role: user.customClaims
+    try {
+        const user = await admin.auth().createUser({
+            email: email,
+            password: password
         })
+    
+        //check if admin
+        if(adminEmails.includes(user.email)) {
+            const customClaims = { admin: true }
+            await admin.auth().setCustomUserClaims(user.uid, customClaims);
+    
+            return db.collection("roles").doc(user.uid).set({
+                email: user.email,
+                role: customClaims
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json()
     }
 
     res.json(user)
