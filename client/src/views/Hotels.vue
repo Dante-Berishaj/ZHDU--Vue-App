@@ -13,57 +13,69 @@
             <v-card-title>
               {{ hotel.title }}
             </v-card-title>
-
+            <v-spacer></v-spacer>
             <v-card-subtitle>
               {{ hotel.content.substring(0, 100) + "..." }}
             </v-card-subtitle>
-
-            <v-card-text class="text--primary text-right">
-              <div>{{ hotel.category }}</div>
-              <div>{{ hotel.location }}</div>
+            <v-card-text class="text--primary text-left">
+             <div> <span>{{ hotel.category }}</span></div>
+             <div class="text-right"> <span>{{ hotel.location }}</span></div>
             </v-card-text>
+           <v-card-actions class="pa-4">
+           <v-btn 
+              color="orange lighten-2" 
+              text
+              :to="{ name: 'hotelDetails', params: { id: hotel._id } }"
+              > Explore
+               </v-btn>
+     
+      <v-spacer></v-spacer>
+      <span class="grey--text text--lighten-2 text-caption mr-2">
+        ({{ hotel.star }})
+      </span>
+      <v-rating
+        v-model="hotel.star"
+        background-color="white"
+        color="yellow accent-4"
+        dense
+        half-increments
+        hover
+        size="18"
+      ></v-rating>
+       
+    </v-card-actions>
+
 
             <v-card-actions>
-              <v-btn color="orange lighten-2" text> Explore </v-btn>
+             
 
               <v-spacer></v-spacer>
-
-              <v-btn icon @click="show = !show">
-                <v-icon>{{ show ? "mdi-heart" : "mdi-heart" }}</v-icon>
-              </v-btn>
             </v-card-actions>
-
-            <v-expand-transition>
-              <div v-show="show">
-                <v-divider></v-divider>
-              </div>
-            </v-expand-transition>
           </v-card>
         </v-col>
       </v-row>
+
+      <Form />
     </v-container>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import axios from "axios";
-import VueAxios from "vue-axios";
-
-Vue.use(VueAxios, axios);
+import Form from "../components/AddHotel.vue";
+import API from "../api/hotelapi";
 
 export default {
   name: "Hotel",
-  data() {
-    return { 
-      hotels: [] 
-      };
+  components: {
+    Form,
   },
-  mounted() {
-    Vue.axios.get("http://localhost:5001/api/hotel").then((res) => {
-      this.hotels = res.data;
-      console.warn(res.data);
-    });
+  data() {
+    return {
+      hotels: [],
+    };
+  },
+  async created() {
+    this.hotels = await API.getAllHotels();
   },
 };
 </script>
