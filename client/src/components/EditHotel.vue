@@ -96,6 +96,8 @@
                     show-size
                     counter
                     multiple
+                    required
+                    :rules="rules"
                     label="Change Image"
                     prepend-icon="mdi-file-image-plus"
                   ></v-file-input>

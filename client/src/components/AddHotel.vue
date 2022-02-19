@@ -99,7 +99,9 @@
                     show-size
                     counter
                     multiple
-                    label="Add Image"
+                    required
+                    :rules="rules"
+                    label="Add Image*"
                     prepend-icon="mdi-file-image-plus"
                   ></v-file-input>
                 </v-col>
