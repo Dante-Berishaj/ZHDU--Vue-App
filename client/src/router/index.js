@@ -10,7 +10,6 @@ import Peja from '../views/cityDetails/Peja'
 import Mitrovica from '../views/cityDetails/Mitrovica'
 import Gjakova from '../views/cityDetails/Gjakova'
 import HotelDetails from '../views/HotelDetails'
-import EditHotel from '../components/EditHotel'
 
 Vue.use(VueRouter)
 
@@ -72,11 +71,6 @@ const routes = [
     path: '/hotelDetails/:id',
     name: 'hotelDetails',
     component: HotelDetails
-  },
-  {
-    path: '/editHotel/:id',
-    name: 'editHotel',
-    component: EditHotel
   },
 ]
 
