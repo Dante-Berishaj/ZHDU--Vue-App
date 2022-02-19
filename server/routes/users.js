@@ -44,18 +44,17 @@ users.post('/register', async(req, res) => {
             const customClaims = { admin: true }
             await admin.auth().setCustomUserClaims(user.uid, customClaims);
     
-            return db.collection("roles").doc(user.uid).set({
+            await db.collection("roles").doc(user.uid).set({
                 email: user.email,
                 role: customClaims
-            })
+                
+            }) 
         }
+        return res.json(user)
     } catch (error) {
         console.log(error)
         return res.status(500).json()
     }
-
-    res.json(user)
-    
 })
 
 module.exports = users;
