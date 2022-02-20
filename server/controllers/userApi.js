@@ -5,15 +5,13 @@ const schema = require('../validators/registerValidator');
 const adminEmails = ['db47425@ubt-uni.net','qb48644@ubt-uni.net', 'bn47113@ubt-uni.net']
 
 const userApi = {
+    list: (req, res) => {
+        return res.json([]);
+    } ,
+
     register: async(req, res) => {
-        //register user
-        const validationResult = schema.validate(req.body)
-    
-        if(validationResult.error){
-            return res.json({
-                message: validationResult.error
-            })
-        }
+
+        //const validationResult = schema.validate(req.body)
     
         const {email, password} = req.body;
     
