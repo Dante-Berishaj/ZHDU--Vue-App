@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import {getAuth, createUserWithEmailAndPassword} from "firebase/auth"
+    import axios from 'axios';
 
     export default {
         data() {
@@ -41,8 +41,11 @@
         methods: {
             async createUser() {
                 try {  
-                    const auth = getAuth()
-                    await createUserWithEmailAndPassword(auth, this.form.email, this.form.password);
+                    const createdUser = await axios.post('http://localhost:5001/api/users/register', {
+                        email: this.form.email,
+                        password: this.form.password
+                    })
+                    console.log(createdUser)
                 } catch (err) {
                     this.error = err
                 }

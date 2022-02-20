@@ -4,11 +4,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const users = require('./routes/users');
 const { getAuthToken } = require('./middlewares/getAuthToken');
+const helmet = require('helmet');
 
 const app = express();
 const port = process.env.APP_PORT;
 
 app.use(cors());
+app.use(helmet())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static("uploads"));
