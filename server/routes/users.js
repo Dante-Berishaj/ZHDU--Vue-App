@@ -5,7 +5,7 @@ const db = admin.firestore()
 
 const users = express.Router()
 
-const adminEmails = ['db47425@ubt-uni.net']
+const adminEmails = ['db47425@ubt-uni.net','qb48644@ubt-uni.net', 'bn47113@ubt-uni.net']
 //password: password
 
 //email providers
@@ -42,6 +42,17 @@ users.post('/register', async(req, res) => {
         //check if admin
         if(adminEmails.includes(user.email)) {
             const customClaims = { admin: true }
+            await admin.auth().setCustomUserClaims(user.uid, customClaims);
+    
+            await db.collection("roles").doc(user.uid).set({
+                email: user.email,
+                role: customClaims
+                
+            }) 
+        }
+
+        if(!adminEmails.includes(user.email)) {
+            const customClaims = { user: true }
             await admin.auth().setCustomUserClaims(user.uid, customClaims);
     
             await db.collection("roles").doc(user.uid).set({
