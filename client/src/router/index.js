@@ -11,6 +11,10 @@ import Mitrovica from '../views/cityDetails/Mitrovica'
 import Gjakova from '../views/cityDetails/Gjakova'
 import HotelDetails from '../views/HotelDetails'
 import Dashboard from '../views/Dashboard.vue'
+import Register from '../components/auth/Register.vue'
+import Login from '../components/auth/Login.vue'
+import User from '../views/User.vue'
+
 
 Vue.use(VueRouter);
 
@@ -79,6 +83,22 @@ const routes = [
     name: 'hotelDetails',
     component: HotelDetails
   },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: User
+  },
+
 ]
 
 const router = new VueRouter({

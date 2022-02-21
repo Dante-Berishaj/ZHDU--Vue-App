@@ -5,6 +5,7 @@ import store from './store'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import vuetify from './plugins/vuetify'
+import './services/firebase'
 
 
 Vue.config.productionTip = false
