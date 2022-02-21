@@ -47,7 +47,7 @@
                         password: this.form.password
                     })
                     console.log(createdUser)
-                    this.$router.push('/login')
+                    this.$router.replace({ name: 'Login' })
                 } catch (err) {
                     this.error = err
                 }

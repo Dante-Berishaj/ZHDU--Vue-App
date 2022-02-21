@@ -5,6 +5,7 @@ const cors = require('cors');
 const users = require('./routes/users');
 const { getAuthToken } = require('./middlewares/getAuthToken');
 const helmet = require('helmet');
+const authenticated = require('./routes/authenticated');
 
 const app = express();
 const port = process.env.APP_PORT;
@@ -23,6 +24,8 @@ mongoose.connect(process.env.APP_DB, {
 app.use(getAuthToken);
 //user routes
 app.use('/api/users', users)
+
+app.use('/list', authenticated)
 
 //crud routes
 app.use("/api/hotel", require("./routes/hotels"));

@@ -6,7 +6,12 @@ const adminEmails = ['db47425@ubt-uni.net','qb48644@ubt-uni.net', 'bn47113@ubt-u
 
 const userApi = {
     list: (req, res) => {
-        return res.json([]);
+        return res.json([
+            {
+                type: 'hotel',
+                name: 'Grand Hotel'
+            }
+        ]);
     } ,
 
     register: async(req, res) => {
