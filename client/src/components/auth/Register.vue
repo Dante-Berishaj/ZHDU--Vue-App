@@ -27,6 +27,7 @@
 
 <script>
     import axios from 'axios';
+    import apiRequests from '../../util/api';
 
     export default {
         data() {
@@ -41,11 +42,12 @@
         methods: {
             async createUser() {
                 try {  
-                    const createdUser = await axios.post('http://localhost:5001/api/users/register', {
+                    await apiRequests.post('users/register', {
                         email: this.form.email,
                         password: this.form.password
                     })
                     console.log(createdUser)
+                    this.$router.push('/login')
                 } catch (err) {
                     this.error = err
                 }
