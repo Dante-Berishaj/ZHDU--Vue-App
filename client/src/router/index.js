@@ -7,6 +7,7 @@ import Hotels from '../views/Hotels.vue'
 import Attractions from '../views/Attractions.vue'
 import Register from '../components/auth/Register.vue'
 import Login from '../components/auth/Login.vue'
+import User from '../views/User.vue'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: User
   },
 
 ]

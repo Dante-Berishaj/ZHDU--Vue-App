@@ -39,9 +39,10 @@
         },
         methods: {
             async loginUser() {
-                await signInWithEmailAndPassword(getAuth(), this.form.email, this.form.password)
-
-                //this.$router.replace({ name: 'Home' })
+                const user = await signInWithEmailAndPassword(getAuth(), this.form.email, this.form.password)
+                
+                console.log(user)
+                this.$router.replace({ name: 'User' })
             }
         }
     };
