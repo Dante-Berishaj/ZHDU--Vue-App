@@ -7,7 +7,7 @@
         reverse-transition="fade-transition"
         transition="fade-transition"
       > 
-        <v-row class=" text fill-height hidden-xs-only white--text"
+        <v-row class=" text fill-height  text-center white--text"
         align="center" 
         justify="center">{{ item.title }}</v-row>
       </v-carousel-item>
