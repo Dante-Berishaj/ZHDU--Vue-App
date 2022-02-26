@@ -2,7 +2,7 @@
   <v-main>
     <v-img
       class="img"
-      :src="require(`../../../server/uploads/${hotel.image}`)"
+      :src="require(`../../../../server/uploads/${hotel.image}`)"
       height="450px"
     >
       <v-btn right absolute class="ml-4 mt-3" color="blue darken-4">
@@ -122,7 +122,7 @@
                           ></v-file-input>
                           <v-img
                             :src="
-                              require(`../../../server/uploads/${hotel.image}`)
+                              require(`../../../../server/uploads/${hotel.image}`)
                             "
                             width="100"
                           ></v-img>
@@ -290,7 +290,7 @@
 </template>
 
 <script>
-import API from "../api/hotelapi";
+import API from "../../api/hotelapi";
 export default {
   data() {
     return {

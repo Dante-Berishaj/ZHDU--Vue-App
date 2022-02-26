@@ -4,12 +4,14 @@ import Home from '../views/Home'
 import Cities from '../views/Cities'
 import Hotels from '../views/Hotels'
 import Attractions from '../views/Attractions'
+import Restaurants from '../views/Restaurants'
 import Prishtina from '../views/cityDetails/Prishtina'
 import Prizreni from '../views/cityDetails/Prizreni'
 import Peja from '../views/cityDetails/Peja'
 import Mitrovica from '../views/cityDetails/Mitrovica'
 import Gjakova from '../views/cityDetails/Gjakova'
-import HotelDetails from '../views/HotelDetails'
+import HotelDetails from '../views/details/HotelDetails'
+import RestaurantDetails from '../views/details/RestaurantDetails'
 import Dashboard from '../views/Dashboard.vue'
 import Register from '../components/auth/Register.vue'
 import Login from '../components/auth/Login.vue'
@@ -60,6 +62,11 @@ const routes = [
     component: Attractions
   },
   {
+    path: '/restaurants',
+    name: 'restaurants',
+    component: Restaurants
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
@@ -82,6 +89,11 @@ const routes = [
     path: '/hotelDetails/:id',
     name: 'hotelDetails',
     component: HotelDetails
+  },
+  {
+    path: '/restaurantDetails/:id',
+    name: 'restaurantDetails',
+    component: RestaurantDetails
   },
   {
     path: '/register',
