@@ -140,6 +140,62 @@
         </v-row>
       </v-container>
       </v-container>
+      <v-container>
+        <h1 class="text text-center">Restaurants</h1>
+        <v-divider></v-divider>
+        <v-container>
+          <v-row>
+            <v-col>
+              <v-row no-gutters>
+                <v-col
+                  cols="12"
+                  sm="4"
+                  v-for="restaurant in restaurants"
+                  v-bind:key="restaurant._id"
+                >
+                  <span v-if="restaurant.location == 'Peje'">
+                    <v-card class="mx-auto" max-width="344" 
+                    :to="{ name: 'restaurantDetails', params: { id: restaurant._id } }">
+                      <v-img
+                        height="200px"
+                        :src="
+                          require(`../../../../server/uploads/${restaurant.image}`)
+                        "
+                      >
+                      </v-img>
+
+                      <v-card-title>
+                        {{ restaurant.title }}
+                        <v-btn
+                          right
+                          absolute
+                          class="ml-4 mt-3"
+                          color="blue darken-4"
+                        >
+                          {{ restaurant.star }}
+                          <v-icon color="yellow darken-2" small
+                            >mdi-star</v-icon
+                          >
+                        </v-btn>
+                      </v-card-title>
+                      <v-spacer></v-spacer>
+                      <v-card-subtitle>
+                        {{ restaurant.content.substring(0, 100) + "..." }}
+                      </v-card-subtitle>
+
+                      <v-card-text class="text--primary text-right">
+                        <div>{{ restaurant.category }}</div>
+                        <div>{{ restaurant.location }}</div>
+                      </v-card-text>
+                    </v-card>
+                  </span>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-container>
+     
     </v-container>
   </v-main>
 </template>
@@ -149,6 +205,8 @@ import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import API from "../../api/hotelapi"
+import RestApi from "../../api/restaurantapi"
+
 
 Vue.use(VueAxios, axios);
 export default {
@@ -171,11 +229,15 @@ export default {
         
       ],
      hotels: [],
-      attractions: [],
+     attractions: [],
+     restaurants: [],
+
     };
   },
   async created() {
     this.hotels = await API.getAllHotels();
+    this.restaurants = await RestApi.getAllRestaurants();
+
   },
   mounted() {
     Vue.axios.get("http://localhost:5001/api/attraction").then((res) => {
