@@ -192,11 +192,11 @@
     <v-container>
       <v-row>
         <v-col>
-          <v-sheet max-height="70vh" rounded="lg">
+          <v-sheet rounded="lg">
             {{ hotel.content }}
           </v-sheet>
         </v-col>
-        <v-col cols="3">
+        <v-col>
           <v-sheet rounded="lg">
             <v-list color="transparent">
               <v-list-item>
@@ -294,6 +294,11 @@ import API from "../api/hotelapi";
 export default {
   data() {
     return {
+      rules: [(value) => !!value || "This field is required."],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      ],
       hotel: {},
       dialog: false,
       editDialog: false,
