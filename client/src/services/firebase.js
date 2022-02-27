@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import store from '../store'
 
 const firebaseConfig = {
@@ -16,4 +17,13 @@ initializeApp(firebaseConfig);
 onAuthStateChanged(getAuth(), (user) => {
   store.dispatch('setUser', user);
 });
+
+const db = getFirestore();
+
+const colRef = collection(db, 'roles');
+
+getDocs(colRef)
+  .then((snap) => {
+    console.log(snap.docs[9]._document.data.value.mapValue.fields.role.mapValue.fields)
+  })
 
