@@ -3,23 +3,24 @@
     <v-container>
       <h2 class="text-center">Accommodation</h2>
       <v-row>
-        <v-col  v-for="item in items" :key="item.id" cols="12" md="4">
-          <v-card dark outlined class="mx-auto">
+        <v-col  v-for="hotel in hotels.slice(0,3)" :key="hotel._id" cols="12" md="4">
+          <v-card dark outlined class="mx-auto"
+           :to="{ name: 'hotelDetails', params: { id: hotel._id } }">
               <v-img
                class="align-end"
                height="200px"    
-              :src="item.src">
+              :src="require(`../../../server/uploads/${hotel.image}`)">
             </v-img>
-            <v-card-title>{{ item.title }}
+            <v-card-title>{{ hotel.title }}
               <v-btn right absolute class="ml-4 mt-3" color="blue darken-4">
-                {{ item.star }}
+                {{ hotel.star }}
                 <v-icon color="yellow darken-2" small>mdi-star</v-icon>
               </v-btn>
             </v-card-title>
             <v-spacer></v-spacer>
-            <v-card-subtitle class="pb-0">{{ item.content.substring(0,100) + "..." }}</v-card-subtitle>
+            <v-card-subtitle class="pb-0">{{ hotel.content.substring(0,100) + "..." }}</v-card-subtitle>
             <v-card-text class="white-text text-right">
-              <div>{{ item.location }}</div>
+              <div>{{ hotel.location }}</div>
             </v-card-text>
           </v-card>
         </v-col>
@@ -38,39 +39,20 @@
 </template>
 
 <script>
-export default {
-  name: "LatestAttraction",
-  data: () => ({
-    show: false,
-    items: [
-      {
-        id: 1,
-        title: "Swiss Diamond Hotel",
-        location: "Prishtine",
-        star: "5.0",
-        content: "His ubique laboramus ne. Expetenda assueverit sed ad. Id nec malis lucilius delicatissimi. Nec assum sonet suscipit ex, diam deterruisset ut usu, ad dicat fabellas aliquando eam.",
-        src: require("../assets/images/img8.jpg")
-      },
-      {
-        id: 2,
-        title: "Premium Park Hotel",
-        location: "Prizren",
-        star: "4.5",
-        content: "Sea ad habemus assueverit, omnes platonem convenire sit et, at integre pericula quo. Facete adolescens definitionem cu qui, in putant aliquid fierent ius.",
-        src: require("../assets/images/img13.jpg")
-      },
-      {
-        id: 3,
-        title: "Ujevara e Drinit Resort",
-        location: "Peje",
-        star: "4.0",
-        content: "Aliquam albucius mei ei, debitis torquatos et pro, eos natum scribentur no. Putant verear constituto te qui. Adolescens persequeris vim ei. Vel nullam reprimique te.",
-        src: require("../assets/images/img14.jpg")
-      }
-    ]
-  })
-};
+import API from "../api/hotelapi";
 
+export default {
+  name: "LatestHotels",
+  data() {
+    return {
+      hotels: [],
+    };
+  },
+  async created() {
+    this.hotels = await API.getAllHotels();
+  },
+ 
+};
 </script>
 
 <style scoped>

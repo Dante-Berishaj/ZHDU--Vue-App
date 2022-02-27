@@ -2,11 +2,11 @@
   <v-main>
     <v-img
       class="img"
-      :src="require(`../../../server/uploads/${hotel.image}`)"
+      :src="require(`../../../server/uploads/${restaurant.image}`)"
       height="450px"
     >
       <v-btn right absolute class="ml-4 mt-3" color="blue darken-4">
-        {{ hotel.star }}
+        {{ restaurant.star }}
         <v-icon color="yellow darken-2" small>mdi-star</v-icon>
       </v-btn>
     </v-img>
@@ -15,7 +15,7 @@
       <v-row>
         <v-col>
           <h1 class="text text-left">
-            {{ hotel.title }}
+            {{ restaurant.title }}
           </h1>
         </v-col>
         <v-col align="right">
@@ -36,62 +36,62 @@
               >
                 <v-card>
                   <v-card-title>
-                    <span class="text-h5">Edit Accommodation</span>
+                    <span class="text-h5">Edit Restaurant</span>
                   </v-card-title>
                   <v-card-text>
                     <v-container>
                       <v-row>
                         <v-col cols="12" sm="6">
                           <v-text-field
-                            label="Accommodation Title*"
-                            v-model="hotel.title"
+                            label="Restaurant Title*"
+                            v-model="restaurant.title"
                             required
                             :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field
-                            label="Accommodation Category*"
-                            v-model="hotel.category"
+                            label="Restaurant Category*"
+                            v-model="restaurant.category"
                             required
                             :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field
-                            label="Accommodation Stars*"
-                            v-model="hotel.star"
+                            label="Restaurant Stars*"
+                            v-model="restaurant.star"
                             required
                             :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field
-                            label="Accommodation Phone*"
-                            v-model="hotel.number"
+                            label="Restaurant Phone*"
+                            v-model="restaurant.number"
                             required
                             :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12">
                           <v-textarea
-                            label="Accommodation Description"
-                            v-model="hotel.content"
+                            label="Restaurant Description"
+                            v-model="restaurant.content"
                           >
                           </v-textarea>
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field
-                            label="Accommodation E-Mail*"
-                            v-model="hotel.email"
+                            label="Restaurant E-Mail*"
+                            v-model="restaurant.email"
                             required
                             :rules="emailRules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field
-                            label="Accommodation Website"
-                            v-model="hotel.web"
+                            label="Restaurant Website"
+                            v-model="restaurant.web"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -105,7 +105,7 @@
                             ]"
                             label="Location*"
                             required
-                            v-model="hotel.location"
+                            v-model="restaurant.location"
                             :rules="rules"
                           ></v-select>
                         </v-col>
@@ -122,7 +122,7 @@
                           ></v-file-input>
                           <v-img
                             :src="
-                              require(`../../../server/uploads/${hotel.image}`)
+                              require(`../../../server/uploads/${restaurant.image}`)
                             "
                             width="100"
                           ></v-img>
@@ -163,7 +163,7 @@
               </template>
               <v-card>
                 <v-card-title class="text-h5">
-                  Are you sure you want to delete this accommodation?
+                  Are you sure you want to delete this restaurant?
                 </v-card-title>
                 <v-card-text color="red darken-1"
                   >This action cannot be reversed!</v-card-text
@@ -176,7 +176,7 @@
                   <v-btn
                     color="red darken-1"
                     text
-                    @click="removeHotel(hotel._id)"
+                    @click="removeRestaurant(restaurant._id)"
                   >
                     Delete
                   </v-btn>
@@ -193,7 +193,7 @@
       <v-row>
         <v-col>
           <v-sheet max-height="70vh" rounded="lg">
-            {{ hotel.content }}
+            {{ restaurant.content }}
           </v-sheet>
         </v-col>
         <v-col cols="3">
@@ -204,7 +204,7 @@
                   <v-list-item-title>Rating</v-list-item-title>
                   <v-list-item-subtitle>
                     <v-rating
-                      v-model="hotel.star"
+                      v-model="restaurant.star"
                       background-color="white"
                       color="yellow accent-4"
                       dense
@@ -214,7 +214,7 @@
                     ></v-rating>
                   </v-list-item-subtitle>
                   <span class="grey--text text--lighten-2 text-caption mr-2">
-                    ({{ hotel.star }})
+                    ({{ restaurant.star }})
                   </span>
                 </v-list-item-content>
               </v-list-item>
@@ -223,7 +223,7 @@
                 <v-list-item-content>
                   <v-list-item-title>Category</v-list-item-title>
                   <v-list-item-subtitle>
-                    {{ hotel.category }}
+                    {{ restaurant.category }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -232,7 +232,7 @@
                 <v-list-item-content>
                   <v-list-item-title>Location</v-list-item-title>
                   <v-list-item-subtitle>
-                    {{ hotel.location }}
+                    {{ restaurant.location }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -251,7 +251,7 @@
                   <v-icon color="indigo"> mdi-phone </v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title>+ {{ hotel.number }}</v-list-item-title>
+                  <v-list-item-title>+ {{ restaurant.number }}</v-list-item-title>
                   <v-list-item-subtitle>Phone Number</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -262,7 +262,7 @@
                   <v-icon color="indigo"> mdi-at </v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title>{{ hotel.email }}</v-list-item-title>
+                  <v-list-item-title>{{ restaurant.email }}</v-list-item-title>
                   <v-list-item-subtitle>E-Mail Address</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -274,8 +274,8 @@
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>
-                    <a style="text-decoration: none" :href="hotel.web">{{
-                      hotel.web
+                    <a style="text-decoration: none" :href="restaurant.web">{{
+                      restaurant.web
                     }}</a>
                   </v-list-item-title>
                   <v-list-item-subtitle>Website</v-list-item-subtitle>
@@ -290,14 +290,14 @@
 </template>
 
 <script>
-import API from "../api/hotelapi";
+import API from "../api/restaurantapi";
 export default {
   data() {
     return {
-      hotel: {},
+      restaurant: {},
       dialog: false,
       editDialog: false,
-      hotel: {
+      restaurant: {
         title: "",
         category: "",
         star: "",
@@ -312,17 +312,17 @@ export default {
     };
   },
   async created() {
-    const response = await API.getHotelsByID(this.$route.params.id);
-    this.hotel = response;
+    const response = await API.getResturantsByID(this.$route.params.id);
+    this.restaurant = response;
   },
   async created() {
-    const response = await API.getHotelsByID(this.$route.params.id);
-    this.hotel = response;
+    const response = await API.getRestaurantsByID(this.$route.params.id);
+    this.restaurant = response;
   },
   methods: {
-    async removeHotel(id) {
-      const response = await API.deleteHotel(id);
-      this.$router.push({ name: "hotels" });
+    async removeRestaurant(id) {
+      const response = await API.deleteRestaurant(id);
+      this.$router.push({ name: "restaurants" });
     },
     selectFile(file) {
       this.image = file[0];
@@ -330,19 +330,19 @@ export default {
     async updateForm() {
       const formData = new FormData();
       formData.append("image", this.image);
-      formData.append("title", this.hotel.title);
-      formData.append("category", this.hotel.category);
-      formData.append("star", this.hotel.star);
-      formData.append("number", this.hotel.number);
-      formData.append("content", this.hotel.content);
-      formData.append("email", this.hotel.email);
-      formData.append("web", this.hotel.web);
-      formData.append("location", this.hotel.location);
-      formData.append("old_image", this.hotel.image);
+      formData.append("title", this.restaurant.title);
+      formData.append("category", this.restaurant.category);
+      formData.append("star", this.restaurant.star);
+      formData.append("number", this.restaurant.number);
+      formData.append("content", this.restaurant.content);
+      formData.append("email", this.restaurant.email);
+      formData.append("web", this.restaurant.web);
+      formData.append("location", this.restaurant.location);
+      formData.append("old_image", this.restaurant.image);
 
       if (this.$refs.form.validate()) {
-        const response = await API.updateHotel(this.$route.params.id, formData);
-        this.$router.push({ name: "hotels" });
+        const response = await API.updateRestaurant(this.$route.params.id, formData);
+        this.$router.push({ name: "restaurantDetails" });
       }
     },
   },

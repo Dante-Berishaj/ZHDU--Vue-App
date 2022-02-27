@@ -4,12 +4,15 @@ import Home from '../views/Home'
 import Cities from '../views/Cities'
 import Hotels from '../views/Hotels'
 import Attractions from '../views/Attractions'
+import Restaurants from '../views/Restaurants'
 import Prishtina from '../views/cityDetails/Prishtina'
 import Prizreni from '../views/cityDetails/Prizreni'
 import Peja from '../views/cityDetails/Peja'
 import Mitrovica from '../views/cityDetails/Mitrovica'
 import Gjakova from '../views/cityDetails/Gjakova'
 import HotelDetails from '../views/HotelDetails'
+import RestaurantDetails from '../views/RestaurantDetails'
+import AttractionDetails from '../views/AttractionDetails'
 import Dashboard from '../views/Dashboard.vue'
 import Register from '../components/auth/Register.vue'
 import Login from '../components/auth/Login.vue'
@@ -56,8 +59,13 @@ const routes = [
   },
   {
     path: '/attractions',
-    name: 'Attractions',
+    name: 'attractions',
     component: Attractions
+  },
+  {
+    path: '/restaurants',
+    name: 'restaurants',
+    component: Restaurants
   },
   {
     path: "/about",
@@ -82,6 +90,16 @@ const routes = [
     path: '/hotelDetails/:id',
     name: 'hotelDetails',
     component: HotelDetails
+  },
+  {
+    path: '/restaurantDetails/:id',
+    name: 'restaurantDetails',
+    component: RestaurantDetails
+  },
+  {
+    path: '/attractionDetails/:id',
+    name: 'attractionDetails',
+    component: AttractionDetails
   },
   {
     path: '/register',
