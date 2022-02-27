@@ -201,13 +201,11 @@
 </template>
 
 <script>
-import Vue from "vue";
-import axios from "axios";
-import VueAxios from "vue-axios";
 import API from "../../api/hotelapi";
 import RestApi from "../../api/restaurantapi"
+import AttrApi from "../../api/attractionapi"
 
-Vue.use(VueAxios, axios);
+
 export default {
   name: "Prishtina",
   data() {
@@ -234,13 +232,9 @@ export default {
   async created() {
     this.hotels = await API.getAllHotels();
     this.restaurants = await RestApi.getAllRestaurants();
+    this.attractions = await AttrApi.getAllAttractions();
 
-  },
-  mounted() {
-    Vue.axios.get("http://localhost:5001/api/attraction").then((res) => {
-      this.attractions = res.data;
-      console.warn(res.data);
-    });
+
   },
 };
 </script>

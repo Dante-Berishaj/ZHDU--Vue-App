@@ -12,6 +12,7 @@ import Mitrovica from '../views/cityDetails/Mitrovica'
 import Gjakova from '../views/cityDetails/Gjakova'
 import HotelDetails from '../views/HotelDetails'
 import RestaurantDetails from '../views/RestaurantDetails'
+import AttractionDetails from '../views/AttractionDetails'
 import Dashboard from '../views/Dashboard.vue'
 import Register from '../components/auth/Register.vue'
 import Login from '../components/auth/Login.vue'
@@ -58,7 +59,7 @@ const routes = [
   },
   {
     path: '/attractions',
-    name: 'Attractions',
+    name: 'attractions',
     component: Attractions
   },
   {
@@ -94,6 +95,11 @@ const routes = [
     path: '/restaurantDetails/:id',
     name: 'restaurantDetails',
     component: RestaurantDetails
+  },
+  {
+    path: '/attractionDetails/:id',
+    name: 'attractionDetails',
+    component: AttractionDetails
   },
   {
     path: '/register',
