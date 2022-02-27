@@ -2,7 +2,7 @@
   <v-main>
     <v-img
       class="img"
-      :src="require(`../../../../server/uploads/${restaurant.image}`)"
+      :src="require(`../../../server/uploads/${restaurant.image}`)"
       height="450px"
     >
       <v-btn right absolute class="ml-4 mt-3" color="blue darken-4">
@@ -67,7 +67,7 @@
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field
-                            label="Accommodation Phone*"
+                            label="Restaurant Phone*"
                             v-model="restaurant.number"
                             required
                             :rules="rules"
@@ -122,7 +122,7 @@
                           ></v-file-input>
                           <v-img
                             :src="
-                              require(`../../../../server/uploads/${restaurant.image}`)
+                              require(`../../../server/uploads/${restaurant.image}`)
                             "
                             width="100"
                           ></v-img>
@@ -192,11 +192,11 @@
     <v-container>
       <v-row>
         <v-col>
-          <v-sheet rounded="lg">
+          <v-sheet max-height="70vh" rounded="lg">
             {{ restaurant.content }}
           </v-sheet>
         </v-col>
-        <v-col>
+        <v-col cols="3">
           <v-sheet rounded="lg">
             <v-list color="transparent">
               <v-list-item>
@@ -290,15 +290,10 @@
 </template>
 
 <script>
-import API from "../../api/restaurantapi";
+import API from "../api/restaurantapi";
 export default {
   data() {
     return {
-      rules: [(value) => !!value || "This field is required."],
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
-      ],
       restaurant: {},
       dialog: false,
       editDialog: false,
@@ -317,7 +312,7 @@ export default {
     };
   },
   async created() {
-    const response = await API.getRestaurantsByID(this.$route.params.id);
+    const response = await API.getResturantsByID(this.$route.params.id);
     this.restaurant = response;
   },
   async created() {
@@ -347,7 +342,7 @@ export default {
 
       if (this.$refs.form.validate()) {
         const response = await API.updateRestaurant(this.$route.params.id, formData);
-        this.$router.push({ name: "restaurants" });
+        this.$router.push({ name: "restaurantDetails" });
       }
     },
   },

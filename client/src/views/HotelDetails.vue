@@ -2,7 +2,7 @@
   <v-main>
     <v-img
       class="img"
-      :src="require(`../../../../server/uploads/${hotel.image}`)"
+      :src="require(`../../../server/uploads/${hotel.image}`)"
       height="450px"
     >
       <v-btn right absolute class="ml-4 mt-3" color="blue darken-4">
@@ -122,7 +122,7 @@
                           ></v-file-input>
                           <v-img
                             :src="
-                              require(`../../../../server/uploads/${hotel.image}`)
+                              require(`../../../server/uploads/${hotel.image}`)
                             "
                             width="100"
                           ></v-img>
@@ -192,11 +192,11 @@
     <v-container>
       <v-row>
         <v-col>
-          <v-sheet rounded="lg">
+          <v-sheet max-height="70vh" rounded="lg">
             {{ hotel.content }}
           </v-sheet>
         </v-col>
-        <v-col>
+        <v-col cols="3">
           <v-sheet rounded="lg">
             <v-list color="transparent">
               <v-list-item>
@@ -290,15 +290,10 @@
 </template>
 
 <script>
-import API from "../../api/hotelapi";
+import API from "../api/hotelapi";
 export default {
   data() {
     return {
-      rules: [(value) => !!value || "This field is required."],
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
-      ],
       hotel: {},
       dialog: false,
       editDialog: false,
