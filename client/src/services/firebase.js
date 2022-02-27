@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, getDocs, doc } from 'firebase/firestore'
 import store from '../store'
 
 const firebaseConfig = {
@@ -22,8 +22,20 @@ const db = getFirestore();
 
 const colRef = collection(db, 'roles');
 
+const token = localStorage.getItem('Usertoken')
+
 getDocs(colRef)
   .then((snap) => {
-    console.log(snap.docs[9]._document.data.value.mapValue.fields.role.mapValue.fields)
+    //console.log(snap.docs[9]._document.data.value.mapValue.fields.role.mapValue.fields)
+
+    let role = [];
+
+    snap.docs.forEach((roles) => {
+      role.push({ ...roles.data().role })
+    })
+    console.log(role)
+
+    let allUserDocs = snap.docs;
+    console.log(allUserDocs)
   })
 
