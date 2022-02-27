@@ -26,16 +26,11 @@ const token = localStorage.getItem('Usertoken')
 
 getDocs(colRef)
   .then((snap) => {
-    //console.log(snap.docs[9]._document.data.value.mapValue.fields.role.mapValue.fields)
-    console.log(token)
-
     let allUserEmails = [];
 
     snap.docs.map(email => {
       allUserEmails.push({ ...email.data(), id: email.id })
     })
-    
-    console.log(allUserEmails)
 
     let userRoles = allUserEmails.filter(user => {
       return user.id === token
@@ -46,9 +41,6 @@ getDocs(colRef)
     userRoles.map(role => {
       Role.push({ ...role.role })
     })
-
-    console.log(userRoles)
-    console.log(Role)
 
     if(token){
       localStorage.setItem('role', JSON.stringify(Role))
