@@ -27,15 +27,21 @@ const token = localStorage.getItem('Usertoken')
 getDocs(colRef)
   .then((snap) => {
     //console.log(snap.docs[9]._document.data.value.mapValue.fields.role.mapValue.fields)
+    console.log(token)
 
-    let role = [];
+    let allUserEmails = [];
 
-    snap.docs.forEach((roles) => {
-      role.push({ ...roles.data().role })
+    snap.docs.map(email => {
+      allUserEmails.push({ ...email.data(), id: email.id })
     })
-    console.log(role)
+    
+    console.log(allUserEmails)
 
-    let allUserDocs = snap.docs;
-    console.log(allUserDocs)
+    let userRoles = allUserEmails.filter(user => {
+      return user.id === token
+    })
+
+    console.log(userRoles)
+
   })
 
