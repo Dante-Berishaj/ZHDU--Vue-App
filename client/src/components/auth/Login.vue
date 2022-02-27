@@ -44,8 +44,8 @@
         methods: {
             async loginUser() {
                 const user = await signInWithEmailAndPassword(getAuth(), this.form.email, this.form.password)
-                localStorage.setItem('Usertoken', user.user.uid)
-                //this.$router.replace({ name: 'User' })
+                localStorage.setItem('Usertoken', user.user.uid);
+                this.$router.go()
             },
 
         },

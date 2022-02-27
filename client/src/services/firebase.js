@@ -41,7 +41,18 @@ getDocs(colRef)
       return user.id === token
     })
 
-    console.log(userRoles)
+    let Role = []
 
+    userRoles.map(role => {
+      Role.push({ ...role.role })
+    })
+
+    console.log(userRoles)
+    console.log(Role)
+
+    if(token){
+      localStorage.setItem('role', JSON.stringify(Role))
+    }
+    
   })
 
