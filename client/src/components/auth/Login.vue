@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'
+    import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
     export default {
         data(){
             return{
@@ -34,15 +34,20 @@
                     email: '',
                     password: '',
                 },
+                user: {
+                    user: [],
+                },
+                roles: [],
             };
         },
+        
         methods: {
             async loginUser() {
                 const user = await signInWithEmailAndPassword(getAuth(), this.form.email, this.form.password)
-                
-                console.log(user)
-                this.$router.replace({ name: 'User' })
-            }
-        }
+                localStorage.setItem('Usertoken', user.user.uid);
+                this.$router.go()
+            },
+
+        },
     };
 </script>

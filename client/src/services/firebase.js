@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, collection, getDocs, doc } from 'firebase/firestore'
 import store from '../store'
 
 const firebaseConfig = {
@@ -16,4 +17,34 @@ initializeApp(firebaseConfig);
 onAuthStateChanged(getAuth(), (user) => {
   store.dispatch('setUser', user);
 });
+
+const db = getFirestore();
+
+const colRef = collection(db, 'roles');
+
+const token = localStorage.getItem('Usertoken')
+
+getDocs(colRef)
+  .then((snap) => {
+    let allUserEmails = [];
+
+    snap.docs.map(email => {
+      allUserEmails.push({ ...email.data(), id: email.id })
+    })
+
+    let userRoles = allUserEmails.filter(user => {
+      return user.id === token
+    })
+
+    let Role = []
+
+    userRoles.map(role => {
+      Role.push({ ...role.role })
+    })
+
+    if(token){
+      localStorage.setItem('role', JSON.stringify(Role))
+    }
+    
+  })
 
