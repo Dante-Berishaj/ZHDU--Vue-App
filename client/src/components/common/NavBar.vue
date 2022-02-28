@@ -59,6 +59,7 @@ export default {
       { title: "CITIES", href: "/cities" },
       { title: "ABOUT", href: "/about" },
       { title: "DASHBOARD", href: "/dashboard" },
+      { title: "LOGIN", href: "/login" },
     ],
     lists: [
       { title: "My Profile" },
