@@ -55,7 +55,7 @@
         </v-col>
       </v-row>
 
-      <Form />
+      <Form v-if='role === "[{\"admin\":true}]"' />
     </v-container>
   </div>
 </template>
@@ -72,6 +72,7 @@ export default {
   data() {
     return {
       restaurants: [],
+      role: localStorage.getItem('role')
     };
   },
   async created() {

@@ -48,7 +48,7 @@
         </v-col>
       </v-row>
 
-      <Form />
+      <Form  v-if='role === "[{\"admin\":true}]"' />
     </v-container>
   </div>
 </template>
@@ -65,6 +65,7 @@ export default {
   data() {
     return {
       attractions: [],
+      role: localStorage.getItem('role')
     };
   },
   async created() {
