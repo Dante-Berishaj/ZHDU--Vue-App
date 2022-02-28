@@ -25,6 +25,10 @@ export default {
     LatestHotels,
     LatestRestaurants
    
+  },
+
+  mounted(){
+        vm.$forceUpdate();
   }
 };
 </script>

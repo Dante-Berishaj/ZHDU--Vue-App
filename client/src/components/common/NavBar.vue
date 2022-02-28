@@ -73,7 +73,7 @@ export default {
       return localStorage.getItem('role') == "[{\"admin\":true}]";
     },
     isLoggedIn() {
-      return localStorage.getItem('role');
+      return localStorage.getItem('Usertoken');
     }
   },
   mounted() {
