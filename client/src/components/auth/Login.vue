@@ -15,13 +15,11 @@
             <v-col cols="12">
               <v-text-field
                 v-model="loginPassword"
-                :append-icon="show1 ? 'eye' : 'eye-off'"
                 :rules="passwordRules"
-                :type="show1 ? 'text' : 'password'"
+                :type="'password'"
                 name="input-10-1"
                 label="Password"
                 hint="At least 8 characters"
-                @click:append="show1 = !show1"
               ></v-text-field>
             </v-col>
             <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
@@ -46,6 +44,7 @@
 
 <script>
 import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
+
 export default {
   data() {
     return {
@@ -61,24 +60,28 @@ export default {
         (value) => !!value || 'Required.',
         (v) => (v && v.length >= 8) || 'Min 8 characters',
       ],
-      show1: false,
       valid: true,
     };
   },
-
   methods: {
     async loginUser() {
-      console.log(`sending ${this.loginEmail} and ${this.loginPassword} to server`);
-
       const res = await signInWithEmailAndPassword(
         getAuth(),
         this.loginEmail,
         this.loginPassword
       );
 
+      // NOTE: after user is redirected to home page, a refresh is required for
+      // `role` to appear in local storage
       localStorage.setItem('Usertoken', res.user.uid);
+      this.$router.replace('/');
+      this.$router.go();
     },
   },
+  mounted() {
+    localStorage.removeItem('Usertoken');
+    localStorage.removeItem('role');
+  }
 };
 </script>
 
