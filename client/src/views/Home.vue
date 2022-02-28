@@ -26,10 +26,7 @@ export default {
     LatestRestaurants
    
   },
-
-  mounted(){
-        vm.$forceUpdate();
-  }
+  
 };
 </script>
 
