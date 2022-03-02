@@ -15,11 +15,6 @@
         {{ item.title }}
       </v-btn>
       <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on" icon>
-            <v-icon> mdi-account-circle </v-icon>
-          </v-btn>
-        </template>
         <v-list>
           <v-list-item v-for="(list, index) in lists" :key="index">
             <v-list-item-title>{{ list.title }}</v-list-item-title>
@@ -59,12 +54,6 @@ export default {
       { title: "CITIES", href: "/cities" },
       { title: "ABOUT", href: "/about" },
       { title: "DASHBOARD", href: "/dashboard" },
-    ],
-    lists: [
-      { title: "My Profile" },
-      { title: "Favorites" },
-      { title: "Settings" },
-      { title: "Dark Mode" },
     ],
   }),
 };

@@ -155,8 +155,15 @@
           </v-row>
         </td>
       </template>
-      <template #item.action="{ item }">
-        <v-icon small color="blue darken-1" class="mr-2"> mdi-pencil </v-icon>
+      <template v-slot:[`item.action`]="{ item }">
+         <v-btn 
+              color="primary" 
+              text
+              small
+              :to="{ name: 'hotelDetails', params: { id: item._id } }"
+              > Details
+               </v-btn>
+       <!-- <v-icon small color="blue darken-1" class="mr-2"> mdi-pencil </v-icon>
         <v-dialog v-model="deleteDialog" persistent max-width="440">
           <template v-slot:activator="{ on, attrs }">
             <v-icon small color="red darken-1" v-bind="attrs" v-on="on">
@@ -175,12 +182,12 @@
               <v-btn color="blue darken-1" text @click="deleteDialog = false">
                 Cancel
               </v-btn>
-              <v-btn color="red darken-1" text @click="removeHotel(item._id)">
+              <v-btn color="red darken-1" text @click="removeHotel( { id: item._id })">
                 Delete
               </v-btn>
             </v-card-actions>
           </v-card>
-        </v-dialog>
+        </v-dialog>-->
       </template>
     </v-data-table>
   </v-card>
@@ -242,8 +249,8 @@ export default {
     selectFile(file) {
       this.image = file[0];
     },
-    async removeHotel(id) {
-      const response = await API.deleteHotel(id);
+    async removeHotel(item) {
+      const response = await API.deleteHotel(item.id);
     },
     async submitForm() {
       const formData = new FormData();

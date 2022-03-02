@@ -157,7 +157,14 @@
         </td>
       </template>
       <template v-slot:[`item.action`]="{ item }">
-        <v-icon small color="blue darken-1" class="mr-2"> mdi-pencil </v-icon>
+         <v-btn 
+              color="primary" 
+              text
+              small
+              :to="{ name: 'restaurantDetails', params: { id: item._id } }"
+              > Details
+               </v-btn>
+       <!-- <v-icon small color="blue darken-1" class="mr-2"> mdi-pencil </v-icon>
          <v-dialog v-model="deleteDialog" persistent max-width="440">
               <template v-slot:activator="{ on, attrs }">
               <v-icon small color="red darken-1" v-bind="attrs" v-on="on"> mdi-delete </v-icon>
@@ -183,7 +190,7 @@
                   </v-btn>
                 </v-card-actions>
               </v-card>
-            </v-dialog>
+            </v-dialog> -->
       </template>
     </v-data-table>
   </v-card>
