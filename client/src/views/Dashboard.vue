@@ -25,8 +25,9 @@
       </v-col>
 
       <v-col> 
-        <Overview v-if="selectedTab === 'Overview'" />
-        <Stats v-else-if="selectedTab === 'Stats'" />
+        <Accommodation v-if="selectedTab === 'Accommodation'" />
+        <Attraction v-else-if="selectedTab === 'Attraction'" />
+        <Restaurant v-else-if="selectedTab === 'Restaurant'" />
         <Admins v-else />
       </v-col>
 
@@ -35,29 +36,36 @@
 </template>
 
 <script>
-import Overview from '../components/dashboard/Overview.vue';
-import Stats from '../components/dashboard/Stats.vue';
+import Accommodation from '../components/dashboard/Accommodation.vue';
+import Attraction from '../components/dashboard/Attraction.vue';
+import Restaurant from '../components/dashboard/Restaurant.vue';
 import Admins from '../components/dashboard/Admins.vue';
 
 export default {
   components: {
-    Overview,
-    Stats,
+    Accommodation,
+    Attraction,
     Admins,
+    Restaurant,
   },
   data() {
     return {
-      selectedTab: "Overview",
+      selectedTab: "Accommodation",
       items: [
         {
-          text: "Overview",
-          icon: "mdi-home",
-          href: "/dashboard/overview",
+          text: "Accommodation",
+          icon: "mdi-bed",
+          href: "/dashboard/accommodation",
         },
         {
-          text: "Stats",
-          icon: "mdi-chart-donut",
-          href: "/dashboard/stats",
+          text: "Attraction",
+          icon: "mdi-image-filter-hdr",
+          href: "/dashboard/attraction",
+        },
+         {
+          text: "Restaurant",
+          icon: "mdi-silverware",
+          href: "/dashboard/restaurant",
         },
         {
           text: "Admins",

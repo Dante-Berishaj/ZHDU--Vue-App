@@ -23,7 +23,9 @@
             <v-dialog v-model="editDialog" persistent max-width="600px">
               <template v-slot:activator="{ on, attrs }">
                 <v-fab-transition>
-                  <v-btn v-bind="attrs" v-on="on" color="blue darken-1" text>
+                  <v-btn
+                  v-if='role === "[{\"admin\":true}]"' 
+                  v-bind="attrs" v-on="on" color="blue darken-1" text>
                     <v-icon left>mdi-pencil-outline</v-icon>
                     Edit
                   </v-btn>
@@ -156,7 +158,9 @@
           <v-btn text>
             <v-dialog v-model="dialog" persistent max-width="440">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="red darken-1" v-bind="attrs" v-on="on" text>
+                <v-btn
+                v-if='role === "[{\"admin\":true}]"' 
+                color="red darken-1" v-bind="attrs" v-on="on" text>
                   <v-icon color="red darken-1"> mdi-trash-can-outline </v-icon>
                   Delete
                 </v-btn>
@@ -294,6 +298,7 @@ import API from "../api/hotelapi";
 export default {
   data() {
     return {
+      role: localStorage.getItem('role'),
       hotel: {},
       dialog: false,
       editDialog: false,

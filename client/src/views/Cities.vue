@@ -27,18 +27,7 @@
               >
                 Explore
               </v-btn>
-              <v-spacer></v-spacer>
-
-              <!-- <v-btn icon @click="show = !show">
-                <v-icon>{{ show ? "mdi-heart" : "mdi-heart" }}</v-icon>
-              </v-btn> -->
             </v-card-actions>
-
-            <v-expand-transition>
-              <!-- <div v-show="show">
-                <v-divider></v-divider>
-              </div> -->
-            </v-expand-transition>
           </v-card>
         </v-col>
       </v-row>
