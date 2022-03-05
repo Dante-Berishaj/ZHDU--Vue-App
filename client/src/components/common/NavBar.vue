@@ -82,7 +82,6 @@ export default {
       // `role`; a refresh is required for `role` to be deleted
       this.items.push({ title: "LOGOUT", href: "/login" });
     } else {
-      this.items = this.items.filter(item => item.title !== 'LOGOUT');
       this.items.push({ title: "LOGIN", href: "/login" });
       this.items.push({ title: "REGISTER", href: "/register" });
     }

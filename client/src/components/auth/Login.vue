@@ -24,7 +24,7 @@
             </v-col>
             <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
             <v-spacer></v-spacer>
-            <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
+            <v-col class="d-flex" cols="12">
               <v-btn
                 x-large
                 block
@@ -34,6 +34,9 @@
               >
                 Login
               </v-btn>
+            </v-col>
+            <v-col>
+              <p>Don't have an account? Register <a href="/register">here</a>.</p>
             </v-col>
           </v-row>
         </v-form>
