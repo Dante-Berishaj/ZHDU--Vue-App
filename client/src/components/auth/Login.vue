@@ -78,10 +78,10 @@ export default {
       this.$router.go();
     },
   },
-  mounted() {
+  beforeMount() {
     localStorage.removeItem('Usertoken');
     localStorage.removeItem('role');
-  }
+  },
 };
 </script>
 
