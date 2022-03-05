@@ -12,22 +12,25 @@
     </v-img>
     <v-spacer></v-spacer>
     <v-container>
-      <v-row>
+      <v-row >
         <v-col>
           <h1 class="text text-left">
             {{ restaurant.title }}
           </h1>
         </v-col>
         <v-col align="right">
+          <div v-if='role === "[{\"admin\":true}]"'>
           <v-btn text>
             <v-dialog v-model="editDialog" persistent max-width="600px">
               <template v-slot:activator="{ on, attrs }">
-                <v-fab-transition>
+                <v-fab-transition>                  
                   <v-btn v-bind="attrs" v-on="on" color="blue darken-1" text>
                     <v-icon left>mdi-pencil-outline</v-icon>
                     Edit
-                  </v-btn>
+                  </v-btn>  
+                          
                 </v-fab-transition>
+                
               </template>
               <v-form
                 ref="form"
@@ -184,6 +187,7 @@
               </v-card>
             </v-dialog>
           </v-btn>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -309,6 +313,7 @@ export default {
         image: "",
       },
       image: "",
+      role: localStorage.getItem('role')
     };
   },
   async created() {
