@@ -51,12 +51,12 @@ export default {
       email: '',
       password: '',
       emailRules: [
-        (v) => !!v || 'Required',
-        (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        (val) => !!val || 'Required',
+        (val) => /.+@.+\..+/.test(val) || 'Enter a valid e-mail address',
       ],
       passwordRules: [
-        (value) => !!value || 'Required.',
-        (v) => (v && v.length >= 8) || 'Min 8 characters',
+        (val) => !!val || 'Required.',
+        (val) => (val && val.length >= 8) || 'Password must have at least 8 characters',
       ],
       valid: true,
     };
