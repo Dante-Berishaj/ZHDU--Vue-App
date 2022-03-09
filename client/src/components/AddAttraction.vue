@@ -25,7 +25,9 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col cols="12" sm="6">
+                <v-col cols="12"
+                    sm="6"
+                    md="4">
                   <v-text-field
                     label="Attraction Title*"
                     v-model="attraction.title"
@@ -33,7 +35,9 @@
                     :rules="rules"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12"
+                    sm="6"
+                    md="4">
                   <v-text-field
                     label="Attraction Category*"
                     v-model="attraction.category"
@@ -41,28 +45,28 @@
                     :rules="rules"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12"
+                    sm="6"
+                    md="4">
                   <v-text-field
                     label="Attraction Stars*"
-                    v-model="attraction.star"
+                    v-model.number="attraction.star"
                     required
-                    :rules="rules"
+                    type = "number"
+                    :rules="ratingRules"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12">
-                  <v-textarea
-                    label="Attraction Description"
-                    v-model="attraction.content"
-                  >
-                  </v-textarea>
-                </v-col>
-                 <v-col cols="12" sm="6">
+                <v-col cols="12"
+                    sm="6"
+                    md="4">
                   <v-text-field
                     label="Attraction Website"
                     v-model="attraction.web"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12"
+                    sm="6"
+                    md="4">
                   <v-select
                     :items="[
                       'Prishtine',
@@ -77,7 +81,9 @@
                     :rules="rules"
                   ></v-select>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12"
+                    sm="6"
+                    md="4">
                   <v-file-input
                     @change="selectFile"
                     show-size
@@ -88,6 +94,14 @@
                     label="Add Image*"
                     prepend-icon="mdi-file-image-plus"
                   ></v-file-input>
+                </v-col>
+                 <v-col cols="12"
+                    >
+                  <v-textarea
+                    label="Attraction Description"
+                    v-model="attraction.content"
+                  >
+                  </v-textarea>
                 </v-col>
               </v-row>
             </v-container>
@@ -121,8 +135,16 @@ export default {
     return {
       rules: [(value) => !!value || "This field is required."],
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
+        (v) =>
+          !v ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mail must be valid",
+      ],
+      ratingRules: [
+        (v) =>
+          Number.isInteger(Number(v)) || "The value must be an integer number",
+        (v) => v > 0 || "The value must be greater than zero",
+        (v) => v <= 5 || "The value must be lower than five",
       ],
       dialog: false,
       attraction: {

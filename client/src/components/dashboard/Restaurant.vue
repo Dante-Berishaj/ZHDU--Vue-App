@@ -19,60 +19,78 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-text-field
-                      label="Restaurant Title*"
+                      label="Title*"
                       v-model="restaurant.title"
                       required
                       :rules="rules"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-text-field
-                      label="Restaurant Category*"
+                      label="Category*"
                       v-model="restaurant.category"
                       required
                       :rules="rules"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-text-field
-                      label="Restaurant Stars*"
+                      label="Stars*"
                       v-model="restaurant.star"
                       required
                       :rules="rules"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-text-field
-                      label="Restaurant Phone*"
+                      label="Phone*"
                       v-model="restaurant.number"
                       required
                       :rules="rules"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-textarea
-                      label="Restaurant Description"
+                      label="Description"
                       v-model="restaurant.content"
+                      no-resize
+                      rows="1"
                     >
                     </v-textarea>
                   </v-col>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-text-field
-                      label="Restaurant E-Mail*"
+                      label="E-Mail*"
                       v-model="restaurant.email"
                       required
                       :rules="emailRules"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-text-field
-                      label="Restaurant Website"
+                      label="Website"
                       v-model="restaurant.web"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-select
                       :items="[
                         'Prishtine',
@@ -87,7 +105,9 @@
                       :rules="rules"
                     ></v-select>
                   </v-col>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12"
+                    sm="6"
+                    md="4">
                     <v-file-input
                       @change="selectFile"
                       show-size
@@ -141,17 +161,29 @@
     <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length">
           <v-row>
-            <v-col left cols="12" md="8">
+            <v-col  cols="12" md="8">
               <h1>{{ item.title }}</h1>
               <v-container>
                 <v-img
-                align="left"
                   class="img"
                   :src="require(`../../../../server/uploads/${item.image}`)"
                   height="200px"
                   width="200px"
                 ></v-img>
               </v-container>
+            </v-col>
+            <v-col
+             cols="12"
+             sm="6"
+             md="4">
+              <v-card flat>
+                <v-card-title class="text-center">
+              Description
+            </v-card-title>
+            <v-card-subtitle>
+              {{ item.content.substring(0, 250) + "..." }}
+            </v-card-subtitle>
+              </v-card>
             </v-col>
           </v-row>
         </td>

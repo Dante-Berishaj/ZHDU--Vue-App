@@ -14,13 +14,6 @@
       >
         {{ item.title }}
       </v-btn>
-      <v-menu offset-y>
-        <v-list>
-          <v-list-item v-for="(list, index) in lists" :key="index">
-            <v-list-item-title>{{ list.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
     </v-toolbar-items>
     <div class="hidden-sm-and-up">
       <v-menu offset-y>

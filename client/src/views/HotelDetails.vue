@@ -48,7 +48,6 @@
                             label="Accommodation Title*"
                             v-model="hotel.title"
                             required
-                            :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -56,7 +55,6 @@
                             label="Accommodation Category*"
                             v-model="hotel.category"
                             required
-                            :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -64,7 +62,6 @@
                             label="Accommodation Stars*"
                             v-model="hotel.star"
                             required
-                            :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -72,7 +69,6 @@
                             label="Accommodation Phone*"
                             v-model="hotel.number"
                             required
-                            :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12">
@@ -87,7 +83,6 @@
                             label="Accommodation E-Mail*"
                             v-model="hotel.email"
                             required
-                            :rules="emailRules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -108,7 +103,6 @@
                             label="Location*"
                             required
                             v-model="hotel.location"
-                            :rules="rules"
                           ></v-select>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -118,7 +112,6 @@
                             counter
                             multiple
                             required
-                            :rules="rules"
                             label="Change Image"
                             prepend-icon="mdi-file-image-plus"
                           ></v-file-input>
@@ -300,6 +293,11 @@ export default {
     return {
       role: localStorage.getItem('role'),
       hotel: {},
+      rules: [(value) => !!value || "This field is required."],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      ],
       dialog: false,
       editDialog: false,
       hotel: {
@@ -315,10 +313,6 @@ export default {
       },
       image: "",
     };
-  },
-  async created() {
-    const response = await API.getHotelsByID(this.$route.params.id);
-    this.hotel = response;
   },
   async created() {
     const response = await API.getHotelsByID(this.$route.params.id);

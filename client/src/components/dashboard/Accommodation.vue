@@ -237,6 +237,7 @@ import API from "../../api/hotelapi";
         image: '',
       },
       image: '',
+      
       hotel: {
         title: '',
         category: '',
