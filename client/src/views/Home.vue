@@ -25,7 +25,8 @@ export default {
     LatestHotels,
     LatestRestaurants
    
-  }
+  },
+  
 };
 </script>
 

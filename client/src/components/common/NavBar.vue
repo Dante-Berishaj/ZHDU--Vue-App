@@ -49,6 +49,25 @@ export default {
       { title: "DASHBOARD", href: "/dashboard" },
     ],
   }),
+  computed: {
+    // TODO: find a better way to do this
+    isAdmin() {
+      return localStorage.getItem('role') == "[{\"admin\":true}]";
+    },
+    isLoggedIn() {
+      return localStorage.getItem('Usertoken');
+    }
+  },
+  mounted() {
+    if (this.isLoggedIn) {
+      // NOTE: logout button clears `Usertoken` from local storage, but not
+      // `role`; a refresh is required for `role` to be deleted
+      this.items.push({ title: "LOGOUT", href: "/login" });
+    } else {
+      this.items.push({ title: "LOGIN", href: "/login" });
+      this.items.push({ title: "REGISTER", href: "/register" });
+    }
+  }
 };
 </script>
 

@@ -19,6 +19,7 @@
           </h1>
         </v-col>
         <v-col align="right">
+          <div v-if='role === "[{\"admin\":true}]"'>
           <v-btn text>
             <v-dialog v-model="editDialog" persistent max-width="600px">
               <template v-slot:activator="{ on, attrs }">
@@ -181,6 +182,7 @@
               </v-card>
             </v-dialog>
           </v-btn>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -312,6 +314,7 @@ export default {
         image: "",
       },
       image: "",
+      role: localStorage.getItem('role')
     };
   },
   async created() {
