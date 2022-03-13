@@ -4,7 +4,7 @@
     :items="hotels"
     :search="search"
     class="elevation-1"
-    item-key="id"
+    item-key="title"
     show-expand
   >
     <template v-slot:top>
@@ -31,6 +31,7 @@
                         label="Title*"
                         v-model="hotel.title"
                         required
+                        :rules="rules"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -38,14 +39,16 @@
                         label="Category*"
                         v-model="hotel.category"
                         required
+                        :rules="rules"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         label="Stars*"
                         v-model="hotel.star"
-                        type="number"
                         required
+                        type="number"
+                        :rules="ratingRules"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -53,6 +56,7 @@
                         label="Phone*"
                         v-model="hotel.number"
                         required
+                        :rules="numberRules"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -69,6 +73,7 @@
                         label="E-Mail*"
                         v-model="hotel.email"
                         required
+                        :rules="emailRules"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -89,6 +94,7 @@
                         label="Location*"
                         required
                         v-model="hotel.location"
+                        :rules="rules"
                       ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -98,6 +104,7 @@
                         counter
                         multiple
                         required
+                        :rules="rules"
                         label="Image*"
                         prepend-icon="mdi-file-image-plus"
                       ></v-file-input>
@@ -131,131 +138,6 @@
           single-line
           hide-details
         ></v-text-field>
-        <v-dialog v-model="deleteDialog" persistent max-width="440">
-          <v-card>
-            <v-card-title class="text-h5">
-              Are you sure you want to delete this accommodation?
-            </v-card-title>
-            <v-card-text color="red darken-1"
-              >This action cannot be reversed!</v-card-text
-            >
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="deleteDialog = false">
-                Cancel
-              </v-btn>
-              <v-btn color="red darken-1" text @click="removeHotel(hotel._id)">
-                Delete
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-        <v-dialog v-model="editDialog" max-width="500px">
-          <v-form ref="form" @submit="updateForm" enctype="mutipart/form-data">
-            <v-card>
-              <v-card-title>
-                <span class="text-h5">Edit Item</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        label="Title*"
-                        v-model="editedItem.title"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        label="Category*"
-                        v-model="editedItem.category"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        label="Stars*"
-                        v-model="editedItem.star"
-                        type="number"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        label="Phone*"
-                        v-model="editedItem.number"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-textarea
-                        label="Description"
-                        v-model="editedItem.content"
-                        no-resize
-                        rows="1"
-                      >
-                      </v-textarea>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        label="E-Mail*"
-                        v-model="editedItem.email"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        label="Website"
-                        v-model="editedItem.web"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-select
-                        :items="[
-                          'Prishtine',
-                          'Prizren',
-                          'Peje',
-                          'Gjakove',
-                          'Mitrovice',
-                        ]"
-                        label="Location*"
-                        required
-                        v-model="editedItem.location"
-                      ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-file-input
-                        @change="selectFile"
-                        show-size
-                        counter
-                        multiple
-                        required
-                        label="Image*"
-                        prepend-icon="mdi-file-image-plus"
-                      ></v-file-input>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="red darken-1" text @click="editDialog = false">
-                  Close
-                </v-btn>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  type="submit"
-                  @click="editDialog = false"
-                >
-                  Save
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-form>
-        </v-dialog>
       </v-toolbar>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
@@ -283,13 +165,16 @@
         </v-row>
       </td>
     </template>
-    <template v-slot:[`item.actions`]="{ item }">
-      <v-icon small color="blue darken-1" class="mr-2" @click="editItem(item)">
-        mdi-pencil
-      </v-icon>
-      <v-icon small color="red darken-1" class="ml-2" @click="deleteItem(item)">
-        mdi-delete
-      </v-icon>
+    <template v-slot:[`item.action`]="{ item }">
+      <v-btn
+        color="primary"
+        text
+        small
+        class="mr-2"
+        :to="{ name: 'hotelDetails', params: { id: item._id } }"
+      >
+        Details
+      </v-btn>
     </template>
   </v-data-table>
 </template>
@@ -298,61 +183,61 @@
 import API from "../../api/hotelapi";
 
 export default {
-  data: () => ({
-    search: "",
-    dialog: false,
-    editDialog: false,
-    deleteDialog: false,
-    headers: [
-      {
-        text: "Name",
-        align: "start",
-        value: "title",
+  name: "Accommodation",
+  data() {
+    return {
+      search: "",
+      headers: [
+        {
+          text: "Name",
+          align: "start",
+          value: "title",
+        },
+        { text: "Category", value: "category" },
+        { text: "Location", value: "location" },
+        { text: "Created", value: "created" },
+        { text: "Actions", value: "action", sortable: false },
+      ],
+      hotels: [],
+      rules: [(value) => !!value || "This field is required."],
+      emailRules: [
+        (v) =>
+          !v ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mail must be valid",
+      ],
+      numberRules: [
+        (v) =>
+          Number.isInteger(Number(v)) || "The value must be an integer number",
+        (v) => v > 0 || "The value must be greater than zero",
+      ],
+      ratingRules: [
+        (v) =>
+          Number.isInteger(Number(v)) || "The value must be an integer number",
+        (v) => v > 0 || "The value must be greater than zero",
+        (v) => v <= 5 || "The value must be lower than five",
+      ],
+      dialog: false,
+      hotel: {
+        title: "",
+        category: "",
+        star: "",
+        number: "",
+        content: "",
+        email: "",
+        web: "",
+        location: "",
+        image: "",
       },
-      { text: "Category", value: "category" },
-      { text: "Location", value: "location" },
-      { text: "Created", value: "created" },
-      { text: "Actions", value: "actions", sortable: false },
-    ],
-    hotels: [],
-    editedIndex: -1,
-    editedItem: {
-      title: "",
-      category: "",
-      star: 0,
-      number: 0,
-      content: "",
-      email: "",
-      web: "",
-      location: "",
       image: "",
-    },
-    image: "",
-
-    hotel: {
-      title: "",
-      category: "",
-      star: 0,
-      number: 0,
-      content: "",
-      email: "",
-      web: "",
-      location: "",
-      image: "",
-    },
-    image: "",
-  }),
+    };
+  },
   async created() {
     this.hotels = await API.getAllHotels();
   },
   methods: {
     selectFile(file) {
       this.image = file[0];
-    },
-
-    async removeHotel(id) {
-      const response = await API.deleteHotel(id);
-      this.$router.push({ name: "Dashboard" });
     },
     async submitForm() {
       const formData = new FormData();
@@ -367,38 +252,7 @@ export default {
       formData.append("location", this.hotel.location);
       if (this.$refs.form.validate()) {
         const response = await API.addHotel(formData);
-        this.$router.push({ name: "Dashboard" });
       }
-    },
-
-    async updateForm() {
-      const formData = new FormData();
-      formData.append("image", this.image);
-      formData.append("title", this.hotel.title);
-      formData.append("category", this.hotel.category);
-      formData.append("star", this.hotel.star);
-      formData.append("number", this.hotel.number);
-      formData.append("content", this.hotel.content);
-      formData.append("email", this.hotel.email);
-      formData.append("web", this.hotel.web);
-      formData.append("location", this.hotel.location);
-      formData.append("old_image", this.hotel.image);
-      if (this.$refs.form.validate()) {
-        const response = await API.updateHotel(this.$route.params.id, formData);
-        this.$router.push({ name: "Dashboard" });
-      }
-    },
-
-    editItem(item) {
-      this.editedIndex = this.hotels.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.editDialog = true;
-    },
-
-    deleteItem(item) {
-      this.editedIndex = this.hotels.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.deleteDialog = true;
     },
   },
 };
