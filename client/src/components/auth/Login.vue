@@ -83,7 +83,10 @@ export default {
   },
   beforeMount() {
     localStorage.removeItem('Usertoken');
-    localStorage.removeItem('role');
+
+    setTimeout(() => {
+      localStorage.removeItem('role');
+    }, 1000);
   },
 };
 </script>

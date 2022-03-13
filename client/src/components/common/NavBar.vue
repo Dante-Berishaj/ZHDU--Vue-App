@@ -58,7 +58,6 @@ export default {
       { title: "HOME", href: "/" },
       { title: "CITIES", href: "/cities" },
       { title: "ABOUT", href: "/about" },
-      { title: "DASHBOARD", href: "/dashboard" },
     ],
     lists: [
       { title: "My Profile" },
@@ -84,6 +83,24 @@ export default {
     } else {
       this.items.push({ title: "LOGIN", href: "/login" });
       this.items.push({ title: "REGISTER", href: "/register" });
+    }
+
+    if (this.userIsAdmin() && this.isLoggedIn) {
+      console.log('mounted(): user is admin in first try; localStorage.getItem(\'role\'): ' + localStorage.getItem('role'));
+      this.items.push( { title: "DASHBOARD", href: "/dashboard" });
+      return;
+    }
+
+    setTimeout(() => {
+      console.log('userIsAdmin outside of if statement: ' + this.userIsAdmin())
+      if (this.userIsAdmin()) {
+        this.items.push( { title: "DASHBOARD", href: "/dashboard" });
+      }
+    }, 2000);
+  },
+  methods: {
+    userIsAdmin() {
+      return localStorage.getItem('role') == "[{\"admin\":true}]";
     }
   }
 };
