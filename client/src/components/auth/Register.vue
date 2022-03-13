@@ -1,4 +1,5 @@
 <template>
+<div class="main">
   <v-container class="login-form-container">
     <v-card class="px-4">
       <v-card-text>
@@ -43,6 +44,7 @@
       </v-card-text>
     </v-card>
   </v-container>
+</div>
 </template>
 
 <script>
@@ -81,4 +83,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.main{
+  min-height: 80vh;
+}
+</style>
