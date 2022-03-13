@@ -52,46 +52,61 @@
 
 <script>
 export default {
-  name: "NavBar",
+  name: 'NavBar',
   data: () => ({
     items: [
-      { title: "HOME", href: "/" },
-      { title: "CITIES", href: "/cities" },
-      { title: "ABOUT", href: "/about" },
-      { title: "DASHBOARD", href: "/dashboard" },
+      { title: 'HOME', href: '/' },
+      { title: 'CITIES', href: '/cities' },
+      { title: 'ABOUT', href: '/about' },
     ],
     lists: [
-      { title: "My Profile" },
-      { title: "Favorites" },
-      { title: "Settings" },
-      { title: "Dark Mode" },
+      { title: 'My Profile' },
+      { title: 'Favorites' },
+      { title: 'Settings' },
+      { title: 'Dark Mode' },
     ],
   }),
   computed: {
     // TODO: find a better way to do this
     isAdmin() {
-      return localStorage.getItem('role') == "[{\"admin\":true}]";
+      return localStorage.getItem('role') == '[{"admin":true}]';
     },
     isLoggedIn() {
       return localStorage.getItem('Usertoken');
-    }
+    },
   },
   mounted() {
     if (this.isLoggedIn) {
       // NOTE: logout button clears `Usertoken` from local storage, but not
       // `role`; a refresh is required for `role` to be deleted
-      this.items.push({ title: "LOGOUT", href: "/login" });
+      this.items.push({ title: 'LOGOUT', href: '/login' });
     } else {
-      this.items.push({ title: "LOGIN", href: "/login" });
-      this.items.push({ title: "REGISTER", href: "/register" });
+      this.items.push({ title: 'LOGIN', href: '/login' });
+      this.items.push({ title: 'REGISTER', href: '/register' });
     }
-  }
+
+    if (this.userIsAdmin() && this.isLoggedIn) {
+      this.items.push({ title: 'DASHBOARD', href: '/dashboard' });
+      return;
+    }
+
+    setTimeout(() => {
+      if (this.userIsAdmin()) {
+        this.items.push({ title: 'DASHBOARD', href: '/dashboard' });
+      }
+    }, 2000);
+  },
+  methods: {
+    userIsAdmin() {
+      return localStorage.getItem('role') == '[{"admin":true}]';
+    },
+  },
 };
 </script>
 
 <style scoped>
 .btn {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
 }
 </style>
