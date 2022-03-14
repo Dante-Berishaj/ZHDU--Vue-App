@@ -6,8 +6,6 @@ const attractionSchema = mongoose.Schema({
     location: String,
     content: String,
     image: String,
-    star: Number,
-    web: String,
     created: {
         type: Date,
         default: Date.now

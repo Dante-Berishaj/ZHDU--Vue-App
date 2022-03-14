@@ -1,37 +1,17 @@
 <template>
-  <v-main dark>
-    <Entry />
-     <Gallery />
-     <LatestAttractions />
-     <LatestHotels />
-     <LatestRestaurants />
-  </v-main>
+  <div class="home">
+    <h1>Home</h1>
+  </div>
 </template>
 
 <script>
-import Entry from "../components/Entry";
-import Gallery from "../components/Gallery";
-import LatestAttractions from "../components/LatestAttraction.vue"
-import LatestHotels from "../components/LatestHotels.vue"
-import LatestRestaurants from "../components/LatestRestaurants.vue"
+// @ is an alias to /src
+import HomeTitle from '../components/HomeTitle.vue';
 
 export default {
-  name: "Home",
-
+  name: 'Home',
   components: {
-    Entry,
-    Gallery,
-    LatestAttractions,
-    LatestHotels,
-    LatestRestaurants
-   
-  },
-  
-};
-</script>
-
-<style scoped>
-#home{
-  font-family: 'Montserrat', sans-serif;
+    HomeTitle
+  }
 }
-</style>
+</script>
