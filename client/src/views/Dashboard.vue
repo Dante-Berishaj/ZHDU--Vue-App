@@ -1,5 +1,6 @@
 <template>
-  <v-container>
+<div class="main">
+  <v-container class="container">
     <v-row>
 
       <v-col cols="3">
@@ -32,6 +33,7 @@
 
     </v-row>
   </v-container>
+</div>
 </template>
 
 <script>
@@ -75,3 +77,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.main{
+  min-height: 80vh;
+}
+
+.container{
+  margin-top: 6rem;
+}
+</style>
