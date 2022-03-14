@@ -1,4 +1,5 @@
 <template>
+<div class="main">
   <v-container class="login-form-container">
     <v-card class="px-4">
       <v-card-text>
@@ -43,6 +44,7 @@
       </v-card-text>
     </v-card>
   </v-container>
+</div>
 </template>
 
 <script>
@@ -93,6 +95,8 @@ export default {
 
 <style>
 .login-form-container {
+  min-height: 80vh;
+  margin-top: 6rem;
   max-width: 600px !important;
 }
 </style>

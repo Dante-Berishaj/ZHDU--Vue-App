@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-container>
+  <div class="main">
+    <v-container class="container">
       <v-row no-gutters>
         <v-col cols="12" sm="4" v-for="hotel in hotels" v-bind:key="hotel._id">
           <v-card class="mx-auto" max-width="344">
@@ -71,3 +71,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.main {
+  min-height: 80vh;
+}
+
+.container{
+  margin-top: 6rem;
+}
+</style>
