@@ -17,7 +17,12 @@
           </v-btn>
         </v-fab-transition>
       </template>
-      <v-form ref="form" @submit="submitForm" enctype="mutipart/form-data">
+      <v-form
+        ref="form"
+        v-model="isFormValid"
+        @submit="submitForm"
+        enctype="mutipart/form-data"
+      >
         <v-card>
           <v-card-title>
             <span class="text-h5">Add Accommodation</span>
@@ -44,17 +49,18 @@
                 <v-col cols="12" sm="6">
                   <v-text-field
                     label="Accommodation Stars*"
-                    v-model="hotel.star"
+                    v-model.number="hotel.star"
+                    type = "number"
                     required
-                    :rules="rules"
+                    :rules="ratingRules"
                   ></v-text-field>
                 </v-col>
-                 <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6">
                   <v-text-field
                     label="Accommodation Phone*"
-                    v-model="hotel.number"
+                    v-model.number="hotel.number"
                     required
-                    :rules="rules"
+                    :rules="numberRules"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
@@ -64,7 +70,7 @@
                   >
                   </v-textarea>
                 </v-col>
-                 <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6">
                   <v-text-field
                     label="Accommodation E-Mail*"
                     v-model="hotel.email"
@@ -72,7 +78,7 @@
                     :rules="emailRules"
                   ></v-text-field>
                 </v-col>
-                 <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6">
                   <v-text-field
                     label="Accommodation Website"
                     v-model="hotel.web"
@@ -117,6 +123,7 @@
             <v-btn
               color="blue darken-1"
               text
+              :disabled="!isFormValid"
               type="submit"
               @click="dialog = false"
             >
@@ -135,10 +142,24 @@ export default {
   name: "Form",
   data() {
     return {
+      isFormValid: false,
       rules: [(value) => !!value || "This field is required."],
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
+        (v) =>
+          !v ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mail must be valid",
+      ],
+      numberRules: [
+        (v) =>
+          Number.isInteger(Number(v)) || "The value must be an integer number",
+        (v) => v > 0 || "The value must be greater than zero",
+      ],
+      ratingRules: [
+        (v) =>
+          Number.isInteger(Number(v)) || "The value must be an integer number",
+        (v) => v > 0 || "The value must be greater than zero",
+        (v) => v <= 5 || "The value must be lower than five",
       ],
       dialog: false,
       hotel: {

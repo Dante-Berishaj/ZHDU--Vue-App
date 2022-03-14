@@ -30,7 +30,7 @@
         to="/attractions"
       >
      <v-btn align="right" text color="primary">
-      More<v-icon right dark>mdi-silverware-fork-knife</v-icon>
+      More<v-icon right dark>mdi-hiking</v-icon>
     </v-btn>
            </router-link>
       </v-row>

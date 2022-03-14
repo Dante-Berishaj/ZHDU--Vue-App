@@ -1,5 +1,6 @@
 <template>
-  <v-container>
+<div class="main">
+  <v-container class="container">
     <v-row>
 
       <v-col cols="3">
@@ -25,44 +26,45 @@
       </v-col>
 
       <v-col> 
-        <Overview v-if="selectedTab === 'Overview'" />
-        <Stats v-else-if="selectedTab === 'Stats'" />
-        <Admins v-else />
+        <Accommodation v-if="selectedTab === 'Accommodation'" />
+        <Attraction v-else-if="selectedTab === 'Attraction'" />
+        <Restaurant v-else-if="selectedTab === 'Restaurant'" />
       </v-col>
 
     </v-row>
   </v-container>
+</div>
 </template>
 
 <script>
-import Overview from '../components/dashboard/Overview.vue';
-import Stats from '../components/dashboard/Stats.vue';
-import Admins from '../components/dashboard/Admins.vue';
+import Accommodation from '../components/dashboard/Accommodation.vue';
+import Attraction from '../components/dashboard/Attraction.vue';
+import Restaurant from '../components/dashboard/Restaurant.vue';
 
 export default {
   components: {
-    Overview,
-    Stats,
-    Admins,
+    Accommodation,
+    Attraction,
+    Restaurant,
   },
   data() {
     return {
-      selectedTab: "Overview",
+      selectedTab: "Accommodation",
       items: [
         {
-          text: "Overview",
-          icon: "mdi-home",
-          href: "/dashboard/overview",
+          text: "Accommodation",
+          icon: "mdi-bed",
+          href: "/dashboard/accommodation",
         },
         {
-          text: "Stats",
-          icon: "mdi-chart-donut",
-          href: "/dashboard/stats",
+          text: "Attraction",
+          icon: "mdi-image-filter-hdr",
+          href: "/dashboard/attraction",
         },
-        {
-          text: "Admins",
-          icon: "mdi-account",
-          href: "/dashboard/users",
+         {
+          text: "Restaurant",
+          icon: "mdi-silverware",
+          href: "/dashboard/restaurant",
         },
       ],
       model: 0,
@@ -75,3 +77,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.main{
+  min-height: 80vh;
+}
+
+.container{
+  margin-top: 6rem;
+}
+</style>

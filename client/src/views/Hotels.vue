@@ -41,22 +41,12 @@
         half-increments
         hover
         size="18"
-      ></v-rating>
-       
-    </v-card-actions>
-
-
-            <v-card-actions>
-             
-
-              <v-spacer></v-spacer>
-            </v-card-actions>
+      ></v-rating>   
+    </v-card-actions>         
           </v-card>
         </v-col>
       </v-row>
-
-      <Form v-if='role === "[{\"admin\":true}]"' />
-      
+      <Form v-if='role === "[{\"admin\":true}]"' />     
     </v-container>
   </div>
 </template>

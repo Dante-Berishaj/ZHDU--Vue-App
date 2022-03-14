@@ -24,7 +24,9 @@
             <v-dialog v-model="editDialog" persistent max-width="600px">
               <template v-slot:activator="{ on, attrs }">
                 <v-fab-transition>
-                  <v-btn v-bind="attrs" v-on="on" color="blue darken-1" text>
+                  <v-btn
+                  v-if='role === "[{\"admin\":true}]"' 
+                  v-bind="attrs" v-on="on" color="blue darken-1" text>
                     <v-icon left>mdi-pencil-outline</v-icon>
                     Edit
                   </v-btn>
@@ -47,7 +49,6 @@
                             label="Accommodation Title*"
                             v-model="hotel.title"
                             required
-                            :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -55,7 +56,6 @@
                             label="Accommodation Category*"
                             v-model="hotel.category"
                             required
-                            :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -63,7 +63,6 @@
                             label="Accommodation Stars*"
                             v-model="hotel.star"
                             required
-                            :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -71,7 +70,6 @@
                             label="Accommodation Phone*"
                             v-model="hotel.number"
                             required
-                            :rules="rules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12">
@@ -86,7 +84,6 @@
                             label="Accommodation E-Mail*"
                             v-model="hotel.email"
                             required
-                            :rules="emailRules"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -107,7 +104,6 @@
                             label="Location*"
                             required
                             v-model="hotel.location"
-                            :rules="rules"
                           ></v-select>
                         </v-col>
                         <v-col cols="12" sm="6">
@@ -117,7 +113,6 @@
                             counter
                             multiple
                             required
-                            :rules="rules"
                             label="Change Image"
                             prepend-icon="mdi-file-image-plus"
                           ></v-file-input>
@@ -157,7 +152,9 @@
           <v-btn text>
             <v-dialog v-model="dialog" persistent max-width="440">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="red darken-1" v-bind="attrs" v-on="on" text>
+                <v-btn
+                v-if='role === "[{\"admin\":true}]"' 
+                color="red darken-1" v-bind="attrs" v-on="on" text>
                   <v-icon color="red darken-1"> mdi-trash-can-outline </v-icon>
                   Delete
                 </v-btn>
@@ -296,7 +293,13 @@ import API from "../api/hotelapi";
 export default {
   data() {
     return {
+      role: localStorage.getItem('role'),
       hotel: {},
+      rules: [(value) => !!value || "This field is required."],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      ],
       dialog: false,
       editDialog: false,
       hotel: {
@@ -313,10 +316,6 @@ export default {
       image: "",
       role: localStorage.getItem('role')
     };
-  },
-  async created() {
-    const response = await API.getHotelsByID(this.$route.params.id);
-    this.hotel = response;
   },
   async created() {
     const response = await API.getHotelsByID(this.$route.params.id);

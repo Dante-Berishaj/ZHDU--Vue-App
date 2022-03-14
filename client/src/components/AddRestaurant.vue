@@ -44,17 +44,18 @@
                 <v-col cols="12" sm="6">
                   <v-text-field
                     label="Restaurant Stars*"
-                    v-model="restaurant.star"
+                    v-model.number="restaurant.star"
                     required
-                    :rules="rules"
+                    type = "number"
+                    :rules="ratingRules"
                   ></v-text-field>
                 </v-col>
-                 <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6">
                   <v-text-field
                     label="Restaurant Phone*"
-                    v-model="restaurant.number"
+                    v-model.number="restaurant.number"
                     required
-                    :rules="rules"
+                    :rules="numberRules"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
@@ -64,7 +65,7 @@
                   >
                   </v-textarea>
                 </v-col>
-                 <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6">
                   <v-text-field
                     label="Restaurant E-Mail*"
                     v-model="restaurant.email"
@@ -72,7 +73,7 @@
                     :rules="emailRules"
                   ></v-text-field>
                 </v-col>
-                 <v-col cols="12" sm="6">
+                <v-col cols="12" sm="6">
                   <v-text-field
                     label="Restaurant Website"
                     v-model="restaurant.web"
@@ -137,8 +138,21 @@ export default {
     return {
       rules: [(value) => !!value || "This field is required."],
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
+        (v) =>
+          !v ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mail must be valid",
+      ],
+      numberRules: [
+        (v) =>
+          Number.isInteger(Number(v)) || "The value must be an integer number",
+        (v) => v > 0 || "The value must be greater than zero",
+      ],
+      ratingRules: [
+        (v) =>
+          Number.isInteger(Number(v)) || "The value must be an integer number",
+        (v) => v > 0 || "The value must be greater than zero",
+        (v) => v <=5 || "The value must be lower than five",
       ],
       dialog: false,
       restaurant: {
